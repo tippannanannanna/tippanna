@@ -8,31 +8,52 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Inter Font from Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Three.js CDN for 3D graphics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         /* General styling for the body and fonts */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0F172A; /* Slate-900 dark background */
         }
+
         /* Custom scrollbar for a cleaner look */
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: #1E293B; /* Slate-800 */
         }
+
         ::-webkit-scrollbar-thumb {
             background: #475569; /* Slate-600 */
             border-radius: 10px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #0D9488; /* Teal-600 */
         }
+
+        /* Position the 3D canvas fixed in the background */
+        #three-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* Disable pointer events on the canvas so it doesn't block clicks on the content */
+            pointer-events: none;
+            overflow: hidden;
+        }
+
         /* A custom class for the animated underline on section titles */
         .section-title {
             position: relative;
             display: inline-block;
         }
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -44,19 +65,30 @@
             border-radius: 9999px;
             transition: all 0.3s ease-in-out;
         }
+
         /* Fade-in effect for sections */
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
+
         .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Styling for content containers to make them visible above the canvas */
+        .content-container {
+            background-color: rgba(15, 23, 42, 0.7); /* Slate-900 with transparency */
+            backdrop-filter: blur(8px);
+        }
     </style>
 </head>
 <body class="bg-slate-900 text-slate-100 antialiased">
+
+    <!-- 3D Canvas Container - This will host the three.js scene -->
+    <div id="three-container"></div>
 
     <!-- Header & Navigation -->
     <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md shadow-lg transition-all duration-300 ease-in-out">
@@ -113,17 +145,14 @@
                     <!-- Updated photo with new image and class styling -->
                     <div class="relative w-64 h-64 md:w-80 md:h-80 group">
                         <div class="absolute inset-0 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-full blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
-                        <img src="https://i.ibb.co/pvwhFQcK/IMG-20250808-012023.png"
-                             alt="Tippanna Bangi"
-                             class="relative rounded-full w-full h-full object-cover border-4 border-teal-500 shadow-2xl transition-transform duration-500 transform group-hover:scale-105"
-                             onerror="this.onerror=null;this.src='https://placehold.co/320x320/1e293b/d1d5db?text=Tippanna';">
+                        <img src="https://i.ibb.co/pvwhFQcK/IMG-20250808-012023.png" alt="Tippanna Bangi" class="relative rounded-full w-full h-full object-cover border-4 border-teal-500 shadow-2xl transition-transform duration-500 transform group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/320x320/1e293b/d1d5db?text=Tippanna';">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- About Me Section -->
-        <section id="about" class="container mx-auto px-6 md:px-12 py-16 bg-slate-800 rounded-3xl shadow-xl fade-in-section">
+        <section id="about" class="container mx-auto px-6 md:px-12 py-16 rounded-3xl shadow-xl fade-in-section content-container">
             <h2 class="text-4xl md:text-5xl font-bold text-center section-title mx-auto pb-4">About Me</h2>
             <div class="mt-12 text-center text-lg max-w-4xl mx-auto text-slate-300">
                 <p>
@@ -140,58 +169,96 @@
             <h2 class="text-4xl md:text-5xl font-bold text-center section-title mx-auto pb-4">Core Skills</h2>
             <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                 <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group content-container">
                     <!-- SVG Icon for Customer Orientation -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users text-teal-400 transition-colors duration-300 group-hover:text-white"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users text-teal-400 transition-colors duration-300 group-hover:text-white">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
                     <h3 class="text-xl font-semibold text-white">Customer Orientation</h3>
                 </div>
                 <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group content-container">
                     <!-- SVG Icon for Communication -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square text-teal-400 transition-colors duration-300 group-hover:text-white"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square text-teal-400 transition-colors duration-300 group-hover:text-white">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
                     <h3 class="text-xl font-semibold text-white">Communication Skills</h3>
                 </div>
                 <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group content-container">
                     <!-- SVG Icon for Problem Solving -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb text-teal-400 transition-colors duration-300 group-hover:text-white"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb text-teal-400 transition-colors duration-300 group-hover:text-white">
+                        <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/>
+                        <path d="M9 18h6"/>
+                        <path d="M10 22h4"/>
+                    </svg>
                     <h3 class="text-xl font-semibold text-white">Problem Solving</h3>
                 </div>
                 <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group content-container">
                     <!-- SVG Icon for Result-Oriented -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target text-teal-400 transition-colors duration-300 group-hover:text-white"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target text-teal-400 transition-colors duration-300 group-hover:text-white">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="6"/>
+                        <path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+                    </svg>
                     <h3 class="text-xl font-semibold text-white">Result-Oriented</h3>
                 </div>
                 <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group content-container">
                     <!-- SVG Icon for Python & SQL -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code text-teal-400 transition-colors duration-300 group-hover:text-white"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code text-teal-400 transition-colors duration-300 group-hover:text-white">
+                        <polyline points="16 18 22 12 16 6"/>
+                        <polyline points="8 6 2 12 8 18"/>
+                    </svg>
                     <h3 class="text-xl font-semibold text-white">Python & SQL</h3>
                 </div>
                 <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group content-container">
                     <!-- SVG Icon for AI & Automation -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot text-teal-400 transition-colors duration-300 group-hover:text-white"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 18h2"/><path d="M7 18h2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot text-teal-400 transition-colors duration-300 group-hover:text-white">
+                        <path d="M12 8V4H8"/>
+                        <rect width="16" height="12" x="4" y="8" rx="2"/>
+                        <path d="M2 14h2"/>
+                        <path d="M20 14h2"/>
+                        <path d="M15 18h2"/>
+                        <path d="M7 18h2"/>
+                    </svg>
                     <h3 class="text-xl font-semibold text-white">AI & Automation</h3>
                 </div>
                 <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group content-container">
                     <!-- Updated SVG Icon for MS Office & Google Workspace -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-stack text-teal-400 transition-colors duration-300 group-hover:text-white"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.414A2 2 0 0 0 15.414 2H14"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 16H8"/><path d="M15 16h-2"/><path d="M9 12H8"/><path d="M15 12h-2"/><path d="M9 8H8"/><path d="M15 8h-2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-stack text-teal-400 transition-colors duration-300 group-hover:text-white">
+                        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.414A2 2 0 0 0 15.414 2H14"/>
+                        <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+                        <path d="M9 16H8"/>
+                        <path d="M15 16h-2"/>
+                        <path d="M9 12H8"/>
+                        <path d="M15 12h-2"/>
+                        <path d="M9 8H8"/>
+                        <path d="M15 8h-2"/>
+                    </svg>
                     <h3 class="text-xl font-semibold text-white">MS Office & Google Workspace</h3>
                 </div>
                 <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group content-container">
                     <!-- SVG Icon for Languages -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe text-teal-400 transition-colors duration-300 group-hover:text-white"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe text-teal-400 transition-colors duration-300 group-hover:text-white">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                        <path d="M2 12h20"/>
+                    </svg>
                     <h3 class="text-xl font-semibold text-white">English & Kannada</h3>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="container mx-auto px-6 md:px-12 py-16 bg-slate-800 rounded-3xl shadow-xl fade-in-section">
+        <section id="projects" class="container mx-auto px-6 md:px-12 py-16 rounded-3xl shadow-xl fade-in-section content-container">
             <h2 class="text-4xl md:text-5xl font-bold text-center section-title mx-auto pb-4">My Projects</h2>
             <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project Card 1: Notes Sharing Website -->
@@ -241,7 +308,7 @@
                         <div class="bg-teal-500 text-slate-900 rounded-full w-24 sm:w-32 py-2 text-center text-sm font-semibold flex-shrink-0 mb-4 sm:mb-0 transition-transform duration-300 group-hover:scale-110">
                             ~3 Years
                         </div>
-                        <div class="sm:ml-8 bg-slate-800 p-6 rounded-2xl shadow-lg w-full transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-2xl">
+                        <div class="sm:ml-8 bg-slate-800 p-6 rounded-2xl shadow-lg w-full transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-2xl content-container">
                             <h3 class="text-2xl font-bold text-white">Customer Associate</h3>
                             <p class="text-slate-400">SquadStack | Remote</p>
                             <ul class="mt-2 text-slate-300 list-disc list-inside space-y-1">
@@ -259,7 +326,7 @@
                         <div class="bg-teal-500 text-slate-900 rounded-full w-24 sm:w-32 py-2 text-center text-sm font-semibold flex-shrink-0 mb-4 sm:mb-0 transition-transform duration-300 group-hover:scale-110">
                             Trainee
                         </div>
-                        <div class="sm:ml-8 bg-slate-800 p-6 rounded-2xl shadow-lg w-full transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-2xl">
+                        <div class="sm:ml-8 bg-slate-800 p-6 rounded-2xl shadow-lg w-full transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-2xl content-container">
                             <h3 class="text-2xl font-bold text-white">Trainee, Deshpande Skilling</h3>
                             <p class="text-slate-400">Hubli, Karnataka</p>
                             <ul class="mt-2 text-slate-300 list-disc list-inside space-y-1">
@@ -276,7 +343,7 @@
                         <div class="bg-teal-500 text-slate-900 rounded-full w-24 sm:w-32 py-2 text-center text-sm font-semibold flex-shrink-0 mb-4 sm:mb-0 transition-transform duration-300 group-hover:scale-110">
                             Education
                         </div>
-                        <div class="sm:ml-8 bg-slate-800 p-6 rounded-2xl shadow-lg w-full transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-2xl">
+                        <div class="sm:ml-8 bg-slate-800 p-6 rounded-2xl shadow-lg w-full transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-2xl content-container">
                             <h3 class="text-2xl font-bold text-white">Bachelor of Arts (B.A.) in Economics</h3>
                             <p class="text-slate-400">Rani Channamma University, Belagavi | Completed</p>
                         </div>
@@ -290,7 +357,7 @@
             <h2 class="text-4xl md:text-5xl font-bold text-center section-title mx-auto pb-4">Certifications</h2>
             <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Certification Card 1: Introduction to Digital Marketing -->
-                <a href="https://www.coursera.org/account/accomplishments/verify/Z6NKQVJTXXAX" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <a href="https://www.coursera.org/account/accomplishments/verify/Z6NKQVJTXXAX" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl content-container">
                     <div class="flex flex-col h-full">
                         <img src="https://i.ibb.co/v4zCnZCL/IMG-20250816-144049.jpg" alt="Introduction to Digital Marketing Certificate" class="w-full h-40 object-contain mb-4 rounded">
                         <h3 class="text-xl font-semibold text-white">Introduction to Digital Marketing</h3>
@@ -301,7 +368,7 @@
                 </a>
                 
                 <!-- Certification Card 2: Data, Data, Everywhere -->
-                <a href="https://www.coursera.org/account/accomplishments/verify/J5E4E4E4X8XG" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <a href="https://www.coursera.org/account/accomplishments/verify/J5E4E4E4X8XG" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl content-container">
                     <div class="flex flex-col h-full">
                         <img src="https://i.ibb.co/N6fxJtpC/IMG-20250816-143847.jpg" alt="Data, Data, Everywhere Certificate" class="w-full h-40 object-contain mb-4 rounded">
                         <h3 class="text-xl font-semibold text-white">Data, Data, Everywhere</h3>
@@ -312,7 +379,7 @@
                 </a>
 
                 <!-- Certification Card 3: Data Entry Operator -->
-                <a href="https://www.edubridgeindia.com/certificate-detail?enrollment_number=EBEON0225986007" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <a href="https://www.edubridgeindia.com/certificate-detail?enrollment_number=EBEON0225986007" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl content-container">
                     <div class="flex flex-col h-full">
                         <img src="https://i.ibb.co/TzYMrTH/IMG-20250816-143652.jpg" alt="Data Entry Operator Certificate" class="w-full h-40 object-contain mb-4 rounded">
                         <h3 class="text-xl font-semibold text-white">Data Entry Operator</h3>
@@ -323,7 +390,7 @@
                 </a>
 
                 <!-- Certification Card 4: Agile Project Management -->
-                <a href="https://www.life-global.org/certificate/89598ac6-6a29-4d56-a218-74a4bf2061e7" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <a href="https://www.life-global.org/certificate/89598ac6-6a29-4d56-a218-74a4bf2061e7" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl content-container">
                     <div class="flex flex-col h-full">
                         <img src="https://i.ibb.co/qLWhmp0Y/IMG-20250816-143450.jpg" alt="Agile Project Management Certificate" class="w-full h-40 object-contain mb-4 rounded">
                         <h3 class="text-xl font-semibold text-white">Agile Project Management</h3>
@@ -334,7 +401,7 @@
                 </a>
 
                 <!-- Certification Card 5: AI for Business Professionals -->
-                <a href="https://www.life-global.org/certificate/ec1465df-0f5f-457c-be01-63681c971cb1" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <a href="https://www.life-global.org/certificate/ec1465df-0f5f-457c-be01-63681c971cb1" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl content-container">
                     <div class="flex flex-col h-full">
                         <img src="https://i.ibb.co/JRtL8zyj/certificate.jpg" alt="AI for Business Professionals Certificate" class="w-full h-40 object-contain mb-4 rounded">
                         <h3 class="text-xl font-semibold text-white">AI for Business Professionals</h3>
@@ -347,24 +414,30 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="container mx-auto px-6 md:px-12 py-16 bg-slate-800 rounded-3xl shadow-xl fade-in-section">
+        <section id="contact" class="container mx-auto px-6 md:px-12 py-16 rounded-3xl shadow-xl fade-in-section content-container">
             <h2 class="text-4xl md:text-5xl font-bold text-center section-title mx-auto pb-4">Get In Touch</h2>
             <div class="mt-12 max-w-3xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
                 <div>
                     <h3 class="text-2xl font-semibold text-white">Contact Details</h3>
                     <ul class="mt-6 space-y-4 text-lg">
                         <li class="flex items-start space-x-4">
-                            <svg class="w-8 h-8 text-teal-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.009-8-6.009V6h16zM4 18V9.754l7.633 5.725c.19.143.431.218.672.218s.482-.075.672-.218L20 9.754V18H4z"/></svg>
+                            <svg class="w-8 h-8 text-teal-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.009-8-6.009V6h16zM4 18V9.754l7.633 5.725c.19.143.431.218.672.218s.482-.075.672-.218L20 9.754V18H4z"/>
+                            </svg>
                             <span>Tippannahbangi@gmail.com</span>
                         </li>
                         <li class="flex items-start space-x-4">
-                            <svg class="w-8 h-8 text-teal-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            <svg class="w-8 h-8 text-teal-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
                             <span>+91 7795610812</span>
                         </li>
                     </ul>
                     <!-- LinkedIn Badge -->
                     <div class="mt-8 flex justify-start">
-                        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="tippanna-bangi-2b1a77328" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/tippanna-bangi-2b1a77328?trk=profile-badge">Tippanna Bangi</a></div>
+                        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="tippanna-bangi-2b1a77328" data-version="v1">
+                            <a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/tippanna-bangi-2b1a77328?trk=profile-badge">Tippanna Bangi</a>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -380,75 +453,177 @@
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 p-8 text-center border-t border-slate-800">
         <p>© 2025 Tippanna Bangi. All rights reserved.</p>
-        <p class="mt-2">Developed with ❤️ & Tippanna </p>
+        <p class="mt-2">Developed with ❤️ & Tippanna</p>
     </footer>
 
     <!-- LinkedIn Badge Script -->
     <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href.length > 1) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(href);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
+        // --- 3D Background with Three.js ---
+        let scene, camera, renderer, particles, lines;
+        const container = document.getElementById('three-container');
+
+        // Initialization function for Three.js
+        function init() {
+            // Scene: the main container for all objects
+            scene = new THREE.Scene();
+
+            // Camera: defines the view
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            // Renderer: renders the scene
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                alpha: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            // Create particles
+            const particleCount = 200;
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const colors = [];
+            const color = new THREE.Color();
+
+            for (let i = 0; i < particleCount; i++) {
+                // Generate random positions
+                const x = (Math.random() - 0.5) * 20;
+                const y = (Math.random() - 0.5) * 20;
+                const z = (Math.random() - 0.5) * 20;
+                vertices.push(x, y, z);
+
+                // Add color with an ethereal blue tone
+                color.setHSL(0.6, 0.8, 0.7);
+                colors.push(color.r, color.g, color.b);
+            }
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.1,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
+            });
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            // Create connecting lines
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x3b82f6,
+                transparent: true,
+                opacity: 0.1
+            });
+            const lineGeometry = new THREE.BufferGeometry();
+            const lineVertices = [];
+
+            for (let i = 0; i < particleCount; i++) {
+                for (let j = i + 1; j < particleCount; j++) {
+                    const dist = Math.sqrt(
+                        (vertices[i * 3] - vertices[j * 3]) ** 2 +
+                        (vertices[i * 3 + 1] - vertices[j * 3 + 1]) ** 2 +
+                        (vertices[i * 3 + 2] - vertices[j * 3 + 2]) ** 2
+                    );
+                    if (dist < 3) {
+                        lineVertices.push(vertices[i * 3], vertices[i * 3 + 1], vertices[i * 3 + 2]);
+                        lineVertices.push(vertices[j * 3], vertices[j * 3 + 1], vertices[j * 3 + 2]);
                     }
                 }
-            });
-        });
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Add a class to the header on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('main-header');
-            if (window.scrollY > 50) {
-                header.classList.add('bg-opacity-100');
-                header.classList.remove('bg-opacity-80');
-            } else {
-                header.classList.add('bg-opacity-80');
-                header.classList.remove('bg-opacity-100');
             }
-        });
+            lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(lineVertices, 3));
+            lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+            scene.add(lines);
 
-        // Fade-in sections on scroll using Intersection Observer
-        const fadeInSections = document.querySelectorAll('.fade-in-section');
-        const options = {
-            threshold: 0.2
-        };
+            // Handle window resizing
+            window.addEventListener('resize', onWindowResize, false);
+        }
 
-        const observer = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            // Animate particles and lines
+            particles.rotation.y += 0.0005;
+            lines.rotation.y += 0.0005;
+            renderer.render(scene, camera);
+        }
+
+        // --- Content Animations and Site Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            animate();
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.length > 1) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Add a class to the header on scroll
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('main-header');
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-opacity-100');
+                    header.classList.remove('bg-opacity-80');
+                } else {
+                    header.classList.add('bg-opacity-80');
+                    header.classList.remove('bg-opacity-100');
                 }
             });
-        }, options);
 
-        fadeInSections.forEach(section => {
-            observer.observe(section);
+            // Fade-in sections on scroll using Intersection Observer
+            const fadeInSections = document.querySelectorAll('.fade-in-section');
+            const options = {
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            fadeInSections.forEach(section => {
+                observer.observe(section);
+            });
         });
     </script>
 </body>
 </html>
-
