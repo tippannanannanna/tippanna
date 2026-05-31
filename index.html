@@ -1,1338 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GLL Living Space PG for Gents | Premium Men's PG Near Global Village, Bangalore</title>
-  <meta name="description" content="GLL Living Space PG for Gents — Premium men's PG accommodation near Global Village, Mailasandra, Bengaluru. Furnished rooms, WiFi, washing machine, lift & hygienic living. Call +91 9113294949." />
-  <meta name="keywords" content="Gents PG near Global Village, Best PG for gents in Bangalore, Men's PG near me, Boys PG Bangalore, Premium PG near Global Village, Working professional PG, Student PG Bangalore, PG Mailasandra" />
-  <meta property="og:title" content="GLL Living Space PG for Gents | Premium Men's PG Bangalore" />
-  <meta property="og:description" content="Premium gents PG near Global Village, Bangalore. Furnished rooms, WiFi, lift & more. Call now: +91 9113294949" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="Images/Building Image.jpg" />
-  <link rel="canonical" href="https://glllivingspace.in/" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LodgingBusiness",
-    "name": "GLL Living Space PG for Gents",
-    "description": "Premium men's PG accommodation near Global Village, Mailasandra, Bengaluru",
-    "telephone": "+919113294949",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Behind Karnataka Bank, Near Raj Vista Hotel, Global Village, Mailasandra",
-      "addressLocality": "Bengaluru",
-      "addressRegion": "Karnataka",
-      "postalCode": "560059",
-      "addressCountry": "IN"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "47"
-    },
-    "amenityFeature": [
-      {"@type": "LocationFeatureSpecification", "name": "WiFi", "value": true},
-      {"@type": "LocationFeatureSpecification", "name": "Washing Machine", "value": true},
-      {"@type": "LocationFeatureSpecification", "name": "Lift", "value": true},
-      {"@type": "LocationFeatureSpecification", "name": "Furnished Rooms", "value": true}
-    ]
-  }
-  </script>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --gold: #C9A84C;
-      --gold-light: #E8C97A;
-      --gold-dark: #9A7930;
-      --black: #0A0A0A;
-      --near-black: #111111;
-      --dark: #1A1A1A;
-      --mid: #2A2A2A;
-      --off-white: #F5F2EE;
-      --white: #FFFFFF;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--black);
-      color: var(--off-white);
-      overflow-x: hidden;
-    }
-
-    .display-font { font-family: 'Cormorant Garamond', serif; }
-
-    .gold-gradient { background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light)); }
-    .gold-text { background: linear-gradient(135deg, var(--gold-dark), var(--gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .gold-border { border: 1px solid rgba(201,168,76,0.4); }
-
-    .glass {
-      background: rgba(255,255,255,0.04);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(201,168,76,0.15);
-    }
-
-    .glass-dark {
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(201,168,76,0.2);
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.4;
-    }
-
-    #navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      transition: all 0.4s ease;
-      padding: 1.2rem 0;
-    }
-    #navbar.scrolled {
-      background: rgba(0,0,0,0.92);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid rgba(201,168,76,0.2);
-      padding: 0.7rem 0;
-    }
-    .nav-link {
-      color: rgba(245,242,238,0.75);
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: color 0.3s;
-      text-decoration: none;
-    }
-    .nav-link:hover { color: var(--gold-light); }
-
-    #hero {
-      height: 100vh;
-      min-height: 700px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-slide {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1.5s ease;
-    }
-    .hero-slide.active { opacity: 1; }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.5) 0%,
-        rgba(0,0,0,0.3) 40%,
-        rgba(0,0,0,0.75) 80%,
-        rgba(0,0,0,0.9) 100%
-      );
-    }
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem 1.5rem;
-      width: 100%;
-    }
-
-    .pulse-btn {
-      animation: pulse-glow 2.5s ease-in-out infinite;
-    }
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.5); }
-      50% { box-shadow: 0 0 0 16px rgba(201,168,76,0); }
-    }
-
-    #float-btns {
-      position: fixed;
-      bottom: 2rem;
-      right: 1.5rem;
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    .float-btn {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease;
-      text-decoration: none;
-      animation: float-pulse 3s ease-in-out infinite;
-    }
-    .float-btn:hover { transform: scale(1.12); }
-    .float-wa { background: #25D366; }
-    .float-call { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); }
-    @keyframes float-pulse {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
-    }
-
-    .gallery-grid {
-      columns: 3;
-      column-gap: 1rem;
-    }
-    @media (max-width: 768px) { .gallery-grid { columns: 2; } }
-    @media (max-width: 480px) { .gallery-grid { columns: 1; } }
-    .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 1rem;
-      overflow: hidden;
-      border-radius: 8px;
-      cursor: pointer;
-      position: relative;
-    }
-    .gallery-item img {
-      width: 100%;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .gallery-item:hover img { transform: scale(1.07); }
-    .gallery-item::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(201,168,76,0.3), transparent);
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-    .gallery-item:hover::after { opacity: 1; }
-
-    #lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
-      z-index: 9998;
-      align-items: center;
-      justify-content: center;
-    }
-    #lightbox.open { display: flex; }
-    #lightbox img { max-height: 90vh; max-width: 90vw; border-radius: 8px; border: 1px solid rgba(201,168,76,0.3); }
-
-    .reviews-track {
-      display: flex;
-      gap: 1.5rem;
-      transition: transform 0.5s ease;
-    }
-    .review-card {
-      min-width: 320px;
-      max-width: 320px;
-      flex-shrink: 0;
-    }
-
-    .faq-item { border-bottom: 1px solid rgba(201,168,76,0.15); }
-    .faq-question {
-      width: 100%;
-      text-align: left;
-      padding: 1.25rem 0;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--off-white);
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-      color: rgba(245,242,238,0.65);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-    .faq-answer.open { max-height: 300px; padding-bottom: 1.25rem; }
-    .faq-icon { transition: transform 0.3s; font-size: 1.1rem; color: var(--gold); flex-shrink: 0; }
-    .faq-icon.open { transform: rotate(45deg); }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-
-    .room-card {
-      background: var(--dark);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-    }
-    .room-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 24px 60px rgba(201,168,76,0.15);
-      border-color: rgba(201,168,76,0.5);
-    }
-
-    .room-card:hover .blog-img { transform: scale(1.07); }
-    .amenity-card {
-      background: var(--dark);
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.35s ease;
-    }
-    .amenity-card:hover {
-      background: var(--mid);
-      border-color: rgba(201,168,76,0.45);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(201,168,76,0.12);
-    }
-
-    .divider {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
-      margin: 0 auto;
-    }
-
-    .branch-card {
-      background: var(--dark);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: all 0.35s ease;
-    }
-    .branch-card:hover {
-      border-color: rgba(201,168,76,0.5);
-      box-shadow: 0 20px 50px rgba(201,168,76,0.12);
-    }
-
-    .form-input {
-      width: 100%;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(201,168,76,0.25);
-      border-radius: 8px;
-      padding: 0.85rem 1rem;
-      color: var(--off-white);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-    .form-input:focus { border-color: var(--gold); }
-    .form-input::placeholder { color: rgba(245,242,238,0.35); }
-
-    .trust-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(201,168,76,0.1);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 999px;
-      padding: 0.35rem 0.9rem;
-      font-size: 0.78rem;
-      color: var(--gold-light);
-      letter-spacing: 0.05em;
-    }
-
-    .gold-line {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-      margin: 0 auto;
-    }
-
-    .why-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(201,168,76,0.08);
-    }
-
-    .star { color: #FFB800; }
-
-    .section-alt { background: var(--near-black); }
-    .section-main { background: var(--black); }
-
-    .urgency {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255,60,60,0.12);
-      border: 1px solid rgba(255,60,60,0.3);
-      border-radius: 999px;
-      padding: 0.35rem 1rem;
-      font-size: 0.8rem;
-      color: #FF8080;
-      letter-spacing: 0.05em;
-    }
-    .urgency-dot {
-      width: 7px;
-      height: 7px;
-      background: #FF4040;
-      border-radius: 50%;
-      animation: blink 1.2s ease-in-out infinite;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.2; }
-    }
-
-    @media (max-width: 640px) {
-      .review-card { min-width: 280px; max-width: 280px; }
-      .hero-cta-wrap { flex-direction: column; align-items: stretch !important; }
-      .hero-cta-wrap a { justify-content: center; width: 100%; }
-    }
-
-    .ham-bar {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--gold-light);
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-
-    .menu-link {
-      display: block;
-      padding: 0.85rem 1rem;
-      color: rgba(245,242,238,0.75);
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.25s;
-      border: 1px solid transparent;
-    }
-    .menu-link:hover {
-      color: var(--gold-light);
-      background: rgba(201,168,76,0.06);
-      border-color: rgba(201,168,76,0.15);
-    }
-
-    .blog-card-skeleton {
-      background: var(--dark);
-      border: 1px solid rgba(201,168,76,0.12);
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-    }
-    .blog-card-skeleton::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 40%, rgba(201,168,76,0.04) 50%, transparent 60%);
-      background-size: 200% 200%;
-      animation: shimmer 2.5s ease infinite;
-    }
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-    .coming-soon-ring {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 2px solid rgba(201,168,76,0.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      animation: ring-pulse 2.5s ease-in-out infinite;
-    }
-    @keyframes ring-pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.25); }
-      50% { box-shadow: 0 0 0 12px rgba(201,168,76,0); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tippanna Bangi | Creative Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font from Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Dark background */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 75%;
+            height: 4px;
+            background-color: #10b981; /* Teal-500 accent */
+            border-radius: 9999px;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10b981;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-900 text-slate-100 antialiased">
 
-<div id="float-btns">
-  <a href="https://wa.me/919113294949" target="_blank" class="float-btn float-wa" title="WhatsApp Us" style="animation-delay:0.2s">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-  </a>
-  <a href="tel:+919113294949" class="float-btn float-call" title="Call Now" style="animation-delay:0s">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-  </a>
-</div>
-
-<div id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img" src="" alt="Gallery" />
-</div>
-
-<div id="mobile-menu" style="position:fixed;inset:0;z-index:1100;pointer-events:none">
-  <div id="menu-overlay" onclick="closeMenu()" style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.4s;pointer-events:none"></div>
-  <div id="menu-drawer" style="position:absolute;top:0;right:0;width:min(320px,85vw);height:100%;background:#0E0E0E;border-left:1px solid rgba(201,168,76,0.2);transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;pointer-events:auto">
-    <div style="padding:1.5rem 1.5rem 1rem;border-bottom:1px solid rgba(201,168,76,0.12);display:flex;align-items:center;justify-content:space-between">
-      <div class="flex items-center gap-3">
-        <img src="Images/gll-living-space-pg-for-gents-kengeri.png.png" alt="GLL Living Space Logo" style="width:36px;height:36px;object-fit:cover;border-radius:50%;" />
-        <div>
-          <div class="display-font text-white font-semibold" style="font-size:0.95rem">GLL Living Space</div>
-          <div style="color:var(--gold);font-size:0.58rem;letter-spacing:0.2em">PREMIUM GENTS PG</div>
-        </div>
-      </div>
-      <button onclick="closeMenu()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--off-white);font-size:1.2rem">&times;</button>
-    </div>
-    <nav style="flex:1;padding:1.5rem;display:flex;flex-direction:column;gap:0.25rem;overflow-y:auto">
-      <a href="#about"     onclick="closeMenu()" class="menu-link">About</a>
-      <a href="#rooms"     onclick="closeMenu()" class="menu-link">Rooms</a>
-      <a href="#amenities" onclick="closeMenu()" class="menu-link">Amenities</a>
-      <a href="#gallery"   onclick="closeMenu()" class="menu-link">Gallery</a>
-      <a href="#branches"  onclick="closeMenu()" class="menu-link">Branches</a>
-      <a href="#reviews"   onclick="closeMenu()" class="menu-link">Reviews</a>
-      <a href="#blog"      onclick="closeMenu()" class="menu-link">Blog</a>
-      <a href="#faq"       onclick="closeMenu()" class="menu-link">FAQ</a>
-      <a href="#contact"   onclick="closeMenu()" class="menu-link">Contact</a>
-    </nav>
-    <div style="padding:1.5rem;border-top:1px solid rgba(201,168,76,0.12);display:flex;flex-direction:column;gap:0.75rem">
-      <a href="tel:+919113294949" class="pulse-btn gold-gradient text-black font-bold py-3 rounded-full text-sm text-center" style="letter-spacing:0.04em">📞 Call Now — +91 9113294949</a>
-      <a href="https://wa.me/919113294949" target="_blank" style="display:block;text-align:center;border:1px solid rgba(201,168,76,0.3);color:var(--gold-light);font-weight:600;padding:0.75rem;border-radius:999px;font-size:0.85rem;text-decoration:none">💬 WhatsApp Us</a>
-    </div>
-  </div>
-</div>
-
-<nav id="navbar">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-    <a href="#hero" class="flex items-center gap-3" style="text-decoration:none">
-      <img src="Images/gll-living-space-pg-for-gents-kengeri.png.png" alt="GLL Living Space PG Logo" style="width:42px;height:42px;object-fit:cover;border-radius:50%;" />
-      <div>
-        <div class="display-font text-white font-semibold leading-none" style="font-size:1.05rem">GLL Living Space</div>
-        <div class="text-xs tracking-widest" style="color:var(--gold);font-size:0.62rem;letter-spacing:0.2em">PREMIUM GENTS PG</div>
-      </div>
-    </a>
-    <div class="hidden lg:flex items-center gap-6">
-      <a href="#about"     class="nav-link">About</a>
-      <a href="#rooms"     class="nav-link">Rooms</a>
-      <a href="#amenities" class="nav-link">Amenities</a>
-      <a href="#gallery"   class="nav-link">Gallery</a>
-      <a href="#branches"  class="nav-link">Branches</a>
-      <a href="#reviews"   class="nav-link">Reviews</a>
-      <a href="#blog"      class="nav-link">Blog</a>
-      <a href="#faq"       class="nav-link">FAQ</a>
-      <a href="#contact"   class="nav-link">Contact</a>
-    </div>
-    <button id="hamburger" onclick="openMenu()" aria-label="Open menu" style="display:flex;flex-direction:column;gap:5px;padding:0.5rem;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.25);border-radius:10px;cursor:pointer">
-      <span class="ham-bar"></span>
-      <span class="ham-bar"></span>
-      <span class="ham-bar"></span>
-    </button>
-  </div>
-</nav>
-
-<section id="hero">
-  <div class="hero-slide active" style="background-image:url('Images/Building Image.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('Images/inside Room view 1.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('Images/Dining Area.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('Images/Double sharing.jpg')"></div>
-  <div class="hero-slide" style="background-image:url('Images/reception.jpg')"></div>
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content" style="padding-top:90px">
-    <div class="urgency mb-6 reveal">
-      <div class="urgency-dot"></div>
-      Rooms Filling Fast — Limited Availability
-    </div>
-
-    <h1 class="display-font text-white mb-4 reveal reveal-delay-1" style="font-size:clamp(2.4rem,6vw,5rem);font-weight:600;line-height:1.1;max-width:800px">
-      Premium Gents PG<br/>
-      <span class="gold-text">Near Global Village,</span><br/>
-      Bangalore
-    </h1>
-
-    <p class="text-base sm:text-lg mb-8 reveal reveal-delay-2" style="color:rgba(245,242,238,0.78);max-width:560px;line-height:1.7">
-      Comfortable rooms, hygienic living, premium facilities, and a peaceful environment for students &amp; working professionals.
-    </p>
-
-    <div class="hero-cta-wrap reveal reveal-delay-3" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center;margin-bottom:2rem;width:100%;max-width:600px">
-      <a href="tel:+919113294949" class="pulse-btn gold-gradient text-black font-bold rounded-full flex items-center gap-2 hover:opacity-90 transition-all" style="padding:1rem 2rem;font-size:1rem;letter-spacing:0.02em;white-space:nowrap">
-        📞 Call Now
-      </a>
-      <a href="https://wa.me/919113294949" target="_blank" class="glass text-white font-semibold rounded-full flex items-center gap-2 hover:bg-white hover:bg-opacity-10 transition-all" style="padding:1rem 2rem;font-size:1rem;letter-spacing:0.02em;white-space:nowrap">
-        💬 WhatsApp Now
-      </a>
-      <a href="#contact" class="text-white font-medium rounded-full flex items-center gap-2 hover:border-yellow-400 transition-all" style="padding:1rem 2rem;font-size:1rem;letter-spacing:0.02em;white-space:nowrap;border:1px solid rgba(255,255,255,0.25)">
-        🗓 Book a Visit
-      </a>
-    </div>
-
-    <div class="reveal reveal-delay-4" style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;max-width:640px">
-      <span class="trust-badge">✓ Premium Rooms</span>
-      <span class="trust-badge">✓ Lift Facility</span>
-      <span class="trust-badge">✓ Washing Machine</span>
-      <span class="trust-badge">✓ Furnished Rooms</span>
-      <span class="trust-badge">✓ Hygienic Environment</span>
-      <span class="trust-badge">✓ Peaceful Stay</span>
-    </div>
-
-    <p class="mt-5 reveal reveal-delay-4" style="font-size:0.88rem;color:rgba(201,168,76,0.85);letter-spacing:0.04em;text-align:center">
-      Call us today and find your perfect stay —&nbsp;<strong style="color:var(--gold-light)">+91 9113294949</strong>
-    </p>
-  </div>
-
-  <div style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:0.5rem" id="hero-dots"></div>
-</section>
-
-<section id="about" class="section-alt py-20 sm:py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-14 reveal">
-      <p class="text-xs tracking-widest uppercase mb-3" style="color:var(--gold)">About GLL Living Space</p>
-      <h2 class="display-font text-white mb-4" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:600">A Home Away<br/><span class="gold-text">From Home</span></h2>
-      <div class="divider mt-4 mb-6"></div>
-      <p class="text-base max-w-2xl mx-auto" style="color:rgba(245,242,238,0.65);line-height:1.8">
-        GLL Living Space PG offers a comfortable, safe, and peaceful living experience for men seeking a premium PG near Global Village, Mailasandra, Bengaluru. We believe every resident deserves more than just a room — they deserve a home.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="amenity-card reveal reveal-delay-1 text-center">
-        <div class="text-4xl mb-3">🏢</div>
-        <h3 class="font-semibold text-white mb-2" style="font-size:1.05rem">Prime Location</h3>
-        <p class="text-sm" style="color:rgba(245,242,238,0.6);line-height:1.6">Behind Karnataka Bank, Near Raj Vista Hotel, Global Village</p>
-      </div>
-      <div class="amenity-card reveal reveal-delay-2 text-center">
-        <div class="text-4xl mb-3">🔒</div>
-        <h3 class="font-semibold text-white mb-2" style="font-size:1.05rem">100% Safe & Secure</h3>
-        <p class="text-sm" style="color:rgba(245,242,238,0.6);line-height:1.6">Secure premises with a professional management team</p>
-      </div>
-      <div class="amenity-card reveal reveal-delay-3 text-center">
-        <div class="text-4xl mb-3">✨</div>
-        <h3 class="font-semibold text-white mb-2" style="font-size:1.05rem">Spotless Cleanliness</h3>
-        <p class="text-sm" style="color:rgba(245,242,238,0.6);line-height:1.6">Daily housekeeping and hygiene standards maintained</p>
-      </div>
-      <div class="amenity-card reveal reveal-delay-4 text-center">
-        <div class="text-4xl mb-3">🤝</div>
-        <h3 class="font-semibold text-white mb-2" style="font-size:1.05rem">Community Feel</h3>
-        <p class="text-sm" style="color:rgba(245,242,238,0.6);line-height:1.6">Friendly, professional residents creating a positive atmosphere</p>
-      </div>
-    </div>
-
-    <div class="mt-12 text-center reveal">
-      <div class="glass inline-block rounded-2xl px-8 py-5 gold-border">
-        <p class="text-sm mb-3" style="color:rgba(245,242,238,0.65)">Ideal for students, IT professionals & men relocating to Bangalore</p>
-        <a href="tel:+919113294949" class="gold-gradient text-black font-bold px-6 py-3 rounded-full text-sm inline-block hover:opacity-90 transition-all">
-          📞 Talk to Us — +91 9113294949
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="gallery" class="section-main py-20 sm:py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-14 reveal">
-      <p class="text-xs tracking-widest uppercase mb-3" style="color:var(--gold)">Visual Tour</p>
-      <h2 class="display-font text-white mb-4" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:600">See Our <span class="gold-text">Premium Space</span></h2>
-      <div class="divider mt-4"></div>
-    </div>
-    <div class="gallery-grid reveal">
-      <div class="gallery-item" onclick="openLightbox('Images/Building Image.jpg')">
-        <img src="Images/Building Image.jpg" alt="GLL Living Space Building" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox('Images/Dining Area.jpg')">
-        <img src="Images/Dining Area.jpg" alt="Dining Area" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox('Images/Double sharing.jpg')">
-        <img src="Images/Double sharing.jpg" alt="Double Sharing Room" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox('Images/Lift.jpg')">
-        <img src="Images/Lift.jpg" alt="Lift Facility" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox('Images/Tripple sharing.jpg')">
-        <img src="Images/Tripple sharing.jpg" alt="Triple Sharing Room" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox('Images/cubboard.jpg')">
-        <img src="Images/cubboard.jpg" alt="Cupboard Storage" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox('Images/inside Room view 1.jpg')">
-        <img src="Images/inside Room view 1.jpg" alt="Room Interior View 1" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox('Images/inside Room view 2.webp')">
-        <img src="Images/inside Room view 2.webp" alt="Room Interior View 2" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox('Images/inside Room view 3.webp')">
-        <img src="Images/inside Room view 3.webp" alt="Room Interior View 3" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox('Images/reception.jpg')">
-        <img src="Images/reception.jpg" alt="Reception" loading="lazy" />
-      </div>
-      <div class="gallery-item" onclick="openLightbox('Images/washing machine.jpg')">
-        <img src="Images/washing machine.jpg" alt="Washing Machine" loading="lazy" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="rooms" class="section-alt py-20 sm:py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-14 reveal">
-      <p class="text-xs tracking-widest uppercase mb-3" style="color:var(--gold)">Accommodation</p>
-      <h2 class="display-font text-white mb-4" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:600">Choose Your <span class="gold-text">Room</span></h2>
-      <div class="divider mt-4 mb-6"></div>
-      <p class="text-sm" style="color:rgba(245,242,238,0.5);letter-spacing:0.08em">Call for current pricing & availability</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-      <div class="room-card reveal reveal-delay-1">
-        <div class="relative overflow-hidden" style="height:220px;background:#1A1A1A">
-          <img src="Images/Double sharing.jpg" alt="Double Sharing Room" class="w-full h-full object-cover" loading="lazy" />
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent)"></div>
-          <span class="absolute top-4 right-4 gold-gradient text-black text-xs font-bold px-3 py-1 rounded-full">POPULAR</span>
-        </div>
-        <div class="p-6">
-          <h3 class="display-font text-white mb-2" style="font-size:1.7rem;font-weight:600">Double Sharing</h3>
-          <p class="text-sm mb-4" style="color:rgba(245,242,238,0.6);line-height:1.7">Spacious, comfortable, and fully furnished room shared by two. Perfect for those seeking both privacy and companionship.</p>
-          <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-sm" style="color:rgba(201,168,76,0.85)"><span>✓</span><span>Spacious furnished room</span></li>
-            <li class="flex items-center gap-2 text-sm" style="color:rgba(201,168,76,0.85)"><span>✓</span><span>Individual cupboard storage</span></li>
-            <li class="flex items-center gap-2 text-sm" style="color:rgba(201,168,76,0.85)"><span>✓</span><span>Comfortable beds & mattress</span></li>
-            <li class="flex items-center gap-2 text-sm" style="color:rgba(201,168,76,0.85)"><span>✓</span><span>AC / Fan options</span></li>
-          </ul>
-          <a href="tel:+919113294949" class="w-full block text-center gold-gradient text-black font-bold py-3 rounded-full hover:opacity-90 transition-all text-sm">
-            📞 Call for Availability
-          </a>
-        </div>
-      </div>
-
-      <div class="room-card reveal reveal-delay-2">
-        <div class="relative overflow-hidden" style="height:220px;background:#1A1A1A">
-          <img src="Images/Tripple sharing.jpg" alt="Triple Sharing Room" class="w-full h-full object-cover" loading="lazy" />
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent)"></div>
-          <span class="absolute top-4 right-4 bg-white bg-opacity-15 text-white text-xs font-bold px-3 py-1 rounded-full border border-white border-opacity-25">VALUE</span>
-        </div>
-        <div class="p-6">
-          <h3 class="display-font text-white mb-2" style="font-size:1.7rem;font-weight:600">Triple Sharing</h3>
-          <p class="text-sm mb-4" style="color:rgba(245,242,238,0.6);line-height:1.7">Affordable and spacious — the ideal choice for students and professionals who prefer a more vibrant social atmosphere.</p>
-          <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-sm" style="color:rgba(201,168,76,0.85)"><span>✓</span><span>Affordable pricing</span></li>
-            <li class="flex items-center gap-2 text-sm" style="color:rgba(201,168,76,0.85)"><span>✓</span><span>Spacious shared layout</span></li>
-            <li class="flex items-center gap-2 text-sm" style="color:rgba(201,168,76,0.85)"><span>✓</span><span>Individual storage space</span></li>
-            <li class="flex items-center gap-2 text-sm" style="color:rgba(201,168,76,0.85)"><span>✓</span><span>Ideal for students</span></li>
-          </ul>
-          <a href="https://wa.me/919113294949" target="_blank" class="w-full block text-center border font-bold py-3 rounded-full hover:bg-white hover:bg-opacity-5 transition-all text-sm" style="border-color:rgba(201,168,76,0.4);color:var(--gold-light)">
-            💬 Enquire Now on WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <p class="text-center mt-8 text-sm reveal" style="color:rgba(245,242,238,0.45)">
-      Have questions? <a href="tel:+919113294949" style="color:var(--gold-light)">Don't hesitate to call us directly.</a>
-    </p>
-  </div>
-</section>
-
-<section id="amenities" class="section-main py-20 sm:py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-14 reveal">
-      <p class="text-xs tracking-widest uppercase mb-3" style="color:var(--gold)">What We Offer</p>
-      <h2 class="display-font text-white mb-4" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:600">Premium <span class="gold-text">Amenities</span></h2>
-      <div class="divider mt-4"></div>
-    </div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-      <div class="amenity-card reveal reveal-delay-1"><div class="text-3xl mb-3">📶</div><h4 class="font-semibold text-white text-sm mb-1">High-Speed WiFi</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">Fast, reliable internet</p></div>
-      <div class="amenity-card reveal reveal-delay-1"><div class="text-3xl mb-3">🧺</div><h4 class="font-semibold text-white text-sm mb-1">Washing Machine</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">Shared laundry facility</p></div>
-      <div class="amenity-card reveal reveal-delay-2"><div class="text-3xl mb-3">🛗</div><h4 class="font-semibold text-white text-sm mb-1">Lift Facility</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">Easy floor access</p></div>
-      <div class="amenity-card reveal reveal-delay-2"><div class="text-3xl mb-3">🍽️</div><h4 class="font-semibold text-white text-sm mb-1">Dining Area</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">Common dining space</p></div>
-      <div class="amenity-card reveal reveal-delay-3"><div class="text-3xl mb-3">🛏️</div><h4 class="font-semibold text-white text-sm mb-1">Furnished Rooms</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">Move-in ready</p></div>
-      <div class="amenity-card reveal reveal-delay-3"><div class="text-3xl mb-3">🗄️</div><h4 class="font-semibold text-white text-sm mb-1">Cupboard Storage</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">Individual wardrobe</p></div>
-      <div class="amenity-card reveal reveal-delay-4"><div class="text-3xl mb-3">🧹</div><h4 class="font-semibold text-white text-sm mb-1">Housekeeping</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">Daily cleaning service</p></div>
-      <div class="amenity-card reveal reveal-delay-4"><div class="text-3xl mb-3">💧</div><h4 class="font-semibold text-white text-sm mb-1">Water Facility</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">24/7 water supply</p></div>
-      <div class="amenity-card reveal"><div class="text-3xl mb-3">🔒</div><h4 class="font-semibold text-white text-sm mb-1">Secure Premises</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">Safe environment</p></div>
-      <div class="amenity-card reveal reveal-delay-1"><div class="text-3xl mb-3">🌙</div><h4 class="font-semibold text-white text-sm mb-1">Peaceful Stay</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">Quiet neighbourhood</p></div>
-      <div class="amenity-card reveal reveal-delay-2"><div class="text-3xl mb-3">🪑</div><h4 class="font-semibold text-white text-sm mb-1">Comfortable Beds</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">Quality mattresses</p></div>
-      <div class="amenity-card reveal reveal-delay-3"><div class="text-3xl mb-3">🧼</div><h4 class="font-semibold text-white text-sm mb-1">Hygienic Living</h4><p class="text-xs" style="color:rgba(245,242,238,0.5)">High cleanliness standards</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="branches" class="section-alt py-20 sm:py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-14 reveal">
-      <p class="text-xs tracking-widest uppercase mb-3" style="color:var(--gold)">Our Locations</p>
-      <h2 class="display-font text-white mb-4" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:600">Our <span class="gold-text">Branches</span></h2>
-      <div class="divider mt-4"></div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="branch-card reveal reveal-delay-1 relative">
-        <span class="absolute top-5 right-5 gold-gradient text-black text-xs font-bold px-3 py-1 rounded-full">MAIN BRANCH</span>
-        <div class="text-3xl mb-4">🏢</div>
-        <h3 class="display-font text-white mb-2" style="font-size:1.5rem;font-weight:600">GLL Living Space</h3>
-        <p class="text-sm mb-4" style="color:rgba(245,242,238,0.6);line-height:1.7">Behind Karnataka Bank, Near Raj Vista Hotel, Global Village, Mailasandra, Bengaluru – 560059</p>
-        <div class="flex flex-col gap-3">
-          <a href="tel:+919113294949" class="gold-gradient text-black font-bold py-2.5 rounded-full text-sm text-center hover:opacity-90 transition-all">📞 Call This Branch</a>
-          <a href="https://wa.me/919113294949" target="_blank" class="border font-medium py-2.5 rounded-full text-sm text-center hover:bg-white hover:bg-opacity-5 transition-all" style="border-color:rgba(201,168,76,0.3);color:var(--gold-light)">💬 WhatsApp</a>
-        </div>
-      </div>
-      <div class="branch-card reveal reveal-delay-2" style="opacity:0.7">
-        <div class="text-3xl mb-4">🏗️</div>
-        <h3 class="display-font text-white mb-2" style="font-size:1.5rem;font-weight:600">Branch 2</h3>
-        <p class="text-sm mb-4" style="color:rgba(245,242,238,0.6);line-height:1.7">New location coming soon. Expanding to serve more residents across Bangalore.</p>
-        <a href="tel:+919113294949" class="block border font-medium py-2.5 rounded-full text-sm text-center hover:bg-white hover:bg-opacity-5 transition-all" style="border-color:rgba(201,168,76,0.3);color:var(--gold-light)">📞 Call to Inquire</a>
-      </div>
-      <div class="branch-card reveal reveal-delay-3" style="opacity:0.7">
-        <div class="text-3xl mb-4">🏗️</div>
-        <h3 class="display-font text-white mb-2" style="font-size:1.5rem;font-weight:600">Branch 3</h3>
-        <p class="text-sm mb-4" style="color:rgba(245,242,238,0.6);line-height:1.7">Future expansion planned. Call us to get notified when the next branch opens.</p>
-        <a href="tel:+919113294949" class="block border font-medium py-2.5 rounded-full text-sm text-center hover:bg-white hover:bg-opacity-5 transition-all" style="border-color:rgba(201,168,76,0.3);color:var(--gold-light)">📞 Call to Inquire</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section-main py-20 sm:py-28">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div class="reveal">
-        <p class="text-xs tracking-widest uppercase mb-3" style="color:var(--gold)">Why GLL?</p>
-        <h2 class="display-font text-white mb-6" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:600">Why Choose<br/><span class="gold-text">GLL Living Space?</span></h2>
-        <div class="space-y-1">
-          <div class="why-row">
-            <div class="text-xl">✅</div>
-            <div><p class="font-semibold text-white text-sm">Cleaner Than Ordinary PGs</p><p class="text-xs mt-0.5" style="color:rgba(245,242,238,0.55)">Daily housekeeping with strict hygiene standards maintained</p></div>
-          </div>
-          <div class="why-row">
-            <div class="text-xl">✅</div>
-            <div><p class="font-semibold text-white text-sm">Better Facilities</p><p class="text-xs mt-0.5" style="color:rgba(245,242,238,0.55)">Lift, WiFi, washing machine, furnished rooms — all included</p></div>
-          </div>
-          <div class="why-row">
-            <div class="text-xl">✅</div>
-            <div><p class="font-semibold text-white text-sm">Premium Living Environment</p><p class="text-xs mt-0.5" style="color:rgba(245,242,238,0.55)">Modern interiors with a luxury feel at an accessible price</p></div>
-          </div>
-          <div class="why-row">
-            <div class="text-xl">✅</div>
-            <div><p class="font-semibold text-white text-sm">Professional Management</p><p class="text-xs mt-0.5" style="color:rgba(245,242,238,0.55)">Responsive team always available to assist residents</p></div>
-          </div>
-          <div class="why-row">
-            <div class="text-xl">✅</div>
-            <div><p class="font-semibold text-white text-sm">Safe & Secure</p><p class="text-xs mt-0.5" style="color:rgba(245,242,238,0.55)">Secure premises for your peace of mind 24/7</p></div>
-          </div>
-          <div class="why-row">
-            <div class="text-xl">✅</div>
-            <div><p class="font-semibold text-white text-sm">Near Global Village Tech Park</p><p class="text-xs mt-0.5" style="color:rgba(245,242,238,0.55)">Short commute for IT professionals and students</p></div>
-          </div>
-        </div>
-        <div class="mt-8 glass rounded-xl p-5 gold-border">
-          <p class="text-sm mb-4" style="color:rgba(245,242,238,0.7)">Still confused? Don't hesitate to call us — we'll help you choose the best room.</p>
-          <div class="flex gap-3 flex-wrap">
-            <a href="tel:+919113294949" class="pulse-btn gold-gradient text-black font-bold px-5 py-2.5 rounded-full text-sm">📞 Call Now</a>
-            <a href="https://wa.me/919113294949" target="_blank" class="border font-medium px-5 py-2.5 rounded-full text-sm hover:bg-white hover:bg-opacity-5 transition-all" style="border-color:rgba(201,168,76,0.3);color:var(--gold-light)">💬 WhatsApp</a>
-          </div>
-        </div>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <div class="relative">
-          <img src="Images/inside Room view 1.jpg" alt="Premium Room Interior" class="rounded-2xl w-full object-cover" style="height:420px;border:1px solid rgba(201,168,76,0.2)" loading="lazy" />
-          <div style="position:absolute;bottom:-1.5rem;left:-1.5rem;background:var(--dark);border:1px solid rgba(201,168,76,0.3);border-radius:14px;padding:1.2rem 1.5rem">
-            <div class="flex items-center gap-3">
-              <div class="text-3xl font-bold" style="color:var(--gold);font-family:'Cormorant Garamond',serif">4.8</div>
-              <div>
-                <div class="flex gap-0.5 mb-0.5"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <p class="text-xs" style="color:rgba(245,242,238,0.55)">Rated by 47+ residents</p>
-              </div>
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-slate-800 bg-opacity-80 backdrop-filter backdrop-blur-lg shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-black text-teal-400">Tippanna Bangi</a>
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="#about" class="text-slate-300 hover:text-teal-400 transition-colors">About</a>
+                <a href="#skills" class="text-slate-300 hover:text-teal-400 transition-colors">Skills</a>
+                <a href="#projects" class="text-slate-300 hover:text-teal-400 transition-colors">Projects</a>
+                <a href="#experience" class="text-slate-300 hover:text-teal-400 transition-colors">Experience</a>
+                <a href="#contact" class="text-slate-300 hover:text-teal-400 transition-colors">Contact</a>
             </div>
-          </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-teal-400 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800 shadow-sm">
+            <a href="#about" class="block px-6 py-3 text-slate-300 hover:bg-slate-700">About</a>
+            <a href="#skills" class="block px-6 py-3 text-slate-300 hover:bg-slate-700">Skills</a>
+            <a href="#projects" class="block px-6 py-3 text-slate-300 hover:bg-slate-700">Projects</a>
+            <a href="#experience" class="block px-6 py-3 text-slate-300 hover:bg-slate-700">Experience</a>
+            <a href="#contact" class="block px-6 py-3 text-slate-300 hover:bg-slate-700">Contact</a>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<section id="reviews" class="section-alt py-20 sm:py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-14 reveal">
-      <p class="text-xs tracking-widest uppercase mb-3" style="color:var(--gold)">Testimonials</p>
-      <h2 class="display-font text-white mb-3" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:600">Residents <span class="gold-text">Love Staying Here</span></h2>
-      <div class="divider mt-4 mb-6"></div>
-      <div class="flex items-center justify-center gap-3 flex-wrap">
-        <div class="flex gap-0.5"><span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span></div>
-        <p class="font-semibold text-white" style="font-size:1.3rem">4.8 / 5</p>
-        <span class="trust-badge">Rated Highly by Residents</span>
-      </div>
-      <p class="text-sm mt-3" style="color:rgba(245,242,238,0.45)">Trusted by Students & Professionals · 47+ Reviews</p>
-    </div>
+    <main class="space-y-24 py-16">
 
-    <div class="relative overflow-hidden reveal">
-      <div id="reviews-track" class="reviews-track pb-4" style="padding-left:0.5rem">
-
-        <div class="review-card glass rounded-xl p-6 gold-border">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-black font-bold">R</div>
-            <div><p class="font-semibold text-white text-sm">Rahul Sharma</p><p class="text-xs" style="color:rgba(245,242,238,0.45)">IT Professional · 8 months stay</p></div>
-            <div class="ml-auto"><div class="flex gap-0.5"><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span></div></div>
-          </div>
-          <p class="text-sm" style="color:rgba(245,242,238,0.7);line-height:1.7">"The rooms are extremely clean and the management is very professional. Best PG I've stayed in near Global Village. The lift facility is a great plus!"</p>
-          <p class="text-xs mt-3" style="color:rgba(201,168,76,0.6)">via Google Reviews</p>
-        </div>
-
-        <div class="review-card glass rounded-xl p-6 gold-border">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-black font-bold">A</div>
-            <div><p class="font-semibold text-white text-sm">Arjun Nair</p><p class="text-xs" style="color:rgba(245,242,238,0.45)">Engineering Student · 1 year stay</p></div>
-            <div class="ml-auto"><div class="flex gap-0.5"><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span></div></div>
-          </div>
-          <p class="text-sm" style="color:rgba(245,242,238,0.7);line-height:1.7">"Felt like home from day one. The rooms are spacious, the WiFi is fast, and the environment is very hygienic. Highly recommended for students!"</p>
-          <p class="text-xs mt-3" style="color:rgba(201,168,76,0.6)">via Google Reviews</p>
-        </div>
-
-        <div class="review-card glass rounded-xl p-6 gold-border">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-black font-bold">K</div>
-            <div><p class="font-semibold text-white text-sm">Karthik M</p><p class="text-xs" style="color:rgba(245,242,238,0.45)">Software Engineer · 6 months stay</p></div>
-            <div class="ml-auto"><div class="flex gap-0.5"><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span></div></div>
-          </div>
-          <p class="text-sm" style="color:rgba(245,242,238,0.7);line-height:1.7">"Very clean and comfortable. The management is responsive and always helpful. The washing machine is a convenience I can't live without now!"</p>
-          <p class="text-xs mt-3" style="color:rgba(201,168,76,0.6)">via Google Reviews</p>
-        </div>
-
-        <div class="review-card glass rounded-xl p-6 gold-border">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-black font-bold">V</div>
-            <div><p class="font-semibold text-white text-sm">Vishal Reddy</p><p class="text-xs" style="color:rgba(245,242,238,0.45)">Working Professional · 4 months stay</p></div>
-            <div class="ml-auto"><div class="flex gap-0.5"><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span></div></div>
-          </div>
-          <p class="text-sm" style="color:rgba(245,242,238,0.7);line-height:1.7">"Safe, secure, and very well maintained. The rooms are premium quality for the price. Location is perfect — very close to tech companies in the area."</p>
-          <p class="text-xs mt-3" style="color:rgba(201,168,76,0.6)">via Google Reviews</p>
-        </div>
-
-        <div class="review-card glass rounded-xl p-6 gold-border">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-black font-bold">S</div>
-            <div><p class="font-semibold text-white text-sm">Suresh Kumar</p><p class="text-xs" style="color:rgba(245,242,238,0.45)">MBA Student · 10 months stay</p></div>
-            <div class="ml-auto"><div class="flex gap-0.5"><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span></div></div>
-          </div>
-          <p class="text-sm" style="color:rgba(245,242,238,0.7);line-height:1.7">"Excellent PG with a homely feel. The dining area is clean and spacious. The overall hygiene and cleanliness is top-notch. Really happy with my decision to stay here."</p>
-          <p class="text-xs mt-3" style="color:rgba(201,168,76,0.6)">via Google Reviews</p>
-        </div>
-
-        <div class="review-card glass rounded-xl p-6 gold-border">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-black font-bold">D</div>
-            <div><p class="font-semibold text-white text-sm">Deepak Joshi</p><p class="text-xs" style="color:rgba(245,242,238,0.45)">IT Professional · 7 months stay</p></div>
-            <div class="ml-auto"><div class="flex gap-0.5"><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span><span class="star text-sm">★</span></div></div>
-          </div>
-          <p class="text-sm" style="color:rgba(245,242,238,0.7);line-height:1.7">"Highly recommended! The rooms are well-furnished, the WiFi is blazing fast, and the staff is very friendly. Great value for money in Bangalore."</p>
-          <p class="text-xs mt-3" style="color:rgba(201,168,76,0.6)">via Google Reviews</p>
-        </div>
-
-      </div>
-      <div class="flex gap-3 justify-center mt-6">
-        <button onclick="slideReviews(-1)" class="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-white hover:bg-opacity-5 transition-all" style="border-color:rgba(201,168,76,0.3);color:var(--gold)">←</button>
-        <button onclick="slideReviews(1)" class="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-white hover:bg-opacity-5 transition-all" style="border-color:rgba(201,168,76,0.3);color:var(--gold)">→</button>
-      </div>
-    </div>
-
-    <div class="text-center mt-12 reveal">
-      <p class="display-font text-white mb-5" style="font-size:1.8rem;font-weight:600">Ready to move in?</p>
-      <div class="flex gap-4 justify-center flex-wrap">
-        <a href="tel:+919113294949" class="pulse-btn gold-gradient text-black font-bold px-8 py-4 rounded-full text-base">📞 Call Now</a>
-        <a href="https://wa.me/919113294949" target="_blank" class="border font-semibold px-8 py-4 rounded-full text-base hover:bg-white hover:bg-opacity-5 transition-all" style="border-color:rgba(201,168,76,0.4);color:var(--gold-light)">💬 WhatsApp Now</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="blog" class="section-main py-20 sm:py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-
-    <div class="text-center mb-14 reveal">
-      <p class="text-xs tracking-widest uppercase mb-3" style="color:var(--gold)">Insights & Tips</p>
-      <h2 class="display-font text-white mb-3" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:600">From Our <span class="gold-text">Blog</span></h2>
-      <div class="divider mt-4"></div>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <a href="blog-pg-living-tips-mylasandra.html" class="room-card reveal reveal-delay-1 block" style="text-decoration:none">
-        <div style="position:relative;height:210px;overflow:hidden">
-          <img src="Images/Building Image.jpg" alt="GLL Living Space Building — PG Living Tips" loading="lazy"
-            style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease" class="blog-img" />
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.2) 60%,transparent 100%)"></div>
-          <span class="absolute top-4 left-4 gold-gradient text-black font-bold" style="font-size:0.65rem;letter-spacing:0.12em;padding:0.3rem 0.75rem;border-radius:999px">PUBLISHED</span>
-          <span class="absolute top-4 right-4" style="background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);border:1px solid rgba(201,168,76,0.25);color:rgba(245,242,238,0.7);font-size:0.7rem;padding:0.3rem 0.7rem;border-radius:999px">10 min read</span>
-        </div>
-        <div style="padding:1.5rem">
-          <p class="text-xs mb-2" style="color:var(--gold);letter-spacing:0.12em;text-transform:uppercase">PG Living Guide · Mylasandra</p>
-          <h3 class="display-font text-white mb-3" style="font-size:1.25rem;font-weight:600;line-height:1.35">
-            10 Essential PG Living Tips for Students &amp; Working Professionals in Mylasandra
-          </h3>
-          <p class="text-sm mb-4" style="color:rgba(245,242,238,0.55);line-height:1.65">
-            Moving to Mylasandra? Discover how to choose the right PG, manage your daily routine, and make the most of your stay near Global Village Tech Park.
-          </p>
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <span style="font-size:0.78rem;color:rgba(245,242,238,0.35)">By GLL Living Space Team</span>
-            <span style="color:var(--gold-light);font-size:0.82rem;font-weight:600;letter-spacing:0.05em">Read Article →</span>
-          </div>
-        </div>
-      </a>
-
-      <div class="blog-card-skeleton reveal reveal-delay-2" style="opacity:0.45">
-        <div style="height:210px;background:linear-gradient(135deg,#1A1A1A,#1E1E1E);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem">
-          <span style="font-size:2.2rem;opacity:0.2">🏙️</span>
-        </div>
-        <div style="padding:1.5rem">
-          <div style="height:9px;background:rgba(201,168,76,0.1);border-radius:999px;width:45%;margin-bottom:1rem"></div>
-          <div style="height:13px;background:rgba(255,255,255,0.06);border-radius:6px;width:92%;margin-bottom:0.5rem"></div>
-          <div style="height:13px;background:rgba(255,255,255,0.04);border-radius:6px;width:68%;margin-bottom:1rem"></div>
-          <div style="height:9px;background:rgba(255,255,255,0.03);border-radius:6px;width:52%"></div>
-        </div>
-      </div>
-
-      <div class="blog-card-skeleton reveal reveal-delay-3" style="opacity:0.25">
-        <div style="height:210px;background:linear-gradient(135deg,#181818,#1C1C1C);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem">
-          <span style="font-size:2.2rem;opacity:0.15">💡</span>
-        </div>
-        <div style="padding:1.5rem">
-          <div style="height:9px;background:rgba(201,168,76,0.07);border-radius:999px;width:40%;margin-bottom:1rem"></div>
-          <div style="height:13px;background:rgba(255,255,255,0.04);border-radius:6px;width:85%;margin-bottom:0.5rem"></div>
-          <div style="height:13px;background:rgba(255,255,255,0.03);border-radius:6px;width:62%;margin-bottom:1rem"></div>
-          <div style="height:9px;background:rgba(255,255,255,0.02);border-radius:6px;width:46%"></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="section-alt py-20 sm:py-28">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-14 reveal">
-      <p class="text-xs tracking-widest uppercase mb-3" style="color:var(--gold)">FAQs</p>
-      <h2 class="display-font text-white mb-4" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:600">Common <span class="gold-text">Questions</span></h2>
-      <div class="divider mt-4"></div>
-    </div>
-
-    <div class="reveal" id="faq-list">
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(0)">
-          What room types are available at GLL Living Space?
-          <span class="faq-icon" id="faq-icon-0">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-0">We offer Double Sharing and Triple Sharing rooms. All rooms are fully furnished with comfortable beds, cupboard storage, and essential amenities. Call us for current availability and pricing.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(1)">
-          Is high-speed WiFi included?
-          <span class="faq-icon" id="faq-icon-1">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-1">Yes! High-speed WiFi is available at GLL Living Space, making it perfect for students studying online and IT professionals working from their rooms.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(2)">
-          Is a washing machine available?
-          <span class="faq-icon" id="faq-icon-2">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-2">Yes, a shared washing machine facility is available for all residents. No more worrying about laundry!</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(3)">
-          Is food / mess facility available?
-          <span class="faq-icon" id="faq-icon-3">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-3">Please call us directly at +91 9113294949 to get the most up-to-date information on food and mess facilities. We'll be happy to clarify all your doubts.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(4)">
-          Is there a lift facility?
-          <span class="faq-icon" id="faq-icon-4">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-4">Yes! GLL Living Space is equipped with a lift facility, making movement between floors convenient and comfortable for all residents.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(5)">
-          Is the PG near Global Village Tech Park?
-          <span class="faq-icon" id="faq-icon-5">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-5">Yes! GLL Living Space is located in Mailasandra, directly near Global Village Tech Park. It's an ideal location for IT professionals working in the area and students at nearby institutions.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(6)">
-          Can working professionals stay here?
-          <span class="faq-icon" id="faq-icon-6">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-6">Absolutely! GLL Living Space is designed for both students and working professionals. Our amenities like high-speed WiFi, lift, washing machine, and a peaceful environment make it perfect for professionals.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(7)">
-          What is the exact address?
-          <span class="faq-icon" id="faq-icon-7">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-7">Behind Karnataka Bank, Near Raj Vista Hotel, Global Village, Mailasandra, Bengaluru, Karnataka – 560059. Call us for precise directions and we'll guide you.</div>
-      </div>
-    </div>
-
-    <div class="text-center mt-10 reveal">
-      <p class="text-sm mb-4" style="color:rgba(245,242,238,0.55)">Still have questions? Don't hesitate to call us directly.</p>
-      <a href="tel:+919113294949" class="pulse-btn gold-gradient text-black font-bold px-8 py-3.5 rounded-full text-base inline-block">📞 Call Owner</a>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section-alt py-20 sm:py-28">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-14 reveal">
-      <p class="text-xs tracking-widest uppercase mb-3" style="color:var(--gold)">Get In Touch</p>
-      <h2 class="display-font text-white mb-4" style="font-size:clamp(2rem,4vw,3.2rem);font-weight:600">Looking for a <span class="gold-text">Comfortable Stay?</span></h2>
-      <div class="divider mt-4 mb-6"></div>
-      <p class="text-base" style="color:rgba(245,242,238,0.6)">Call us today — we'll help you find the perfect room.</p>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-      <div class="reveal">
-        <div class="space-y-4 mb-8">
-          <div class="glass rounded-xl p-5 gold-border flex items-center gap-4">
-            <div class="text-2xl">📍</div>
-            <div>
-              <p class="font-semibold text-white text-sm mb-1">Address</p>
-              <p class="text-sm" style="color:rgba(245,242,238,0.6);line-height:1.6">Behind Karnataka Bank, Near Raj Vista Hotel, Global Village, Mailasandra, Bengaluru – 560059</p>
+        <!-- Hero Section -->
+        <section id="hero" class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row items-center justify-center md:justify-between space-y-12 md:space-y-0 md:space-x-16">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+                        <span class="text-teal-400">Hello,</span> I'm <br class="hidden md:inline"> Tippanna Bangi
+                    </h1>
+                    <p class="mt-6 text-lg md:text-xl text-slate-300 leading-relaxed max-w-xl">
+                        Motivated and tech-savvy graduate with nearly three years of experience as a Customer Associate. Skilled in communication and a proactive approach to problem-solving.
+                    </p>
+                    <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                        <a href="#contact" class="bg-teal-500 text-slate-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-teal-400 transition-colors duration-300">
+                            Get In Touch
+                        </a>
+                        <a href="#projects" class="bg-slate-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-slate-600 transition-colors duration-300">
+                            View Work
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center md:justify-end">
+                    <!-- Updated photo with new image and class styling -->
+                    <img src="https://i.ibb.co/pvwhFQcK/IMG-20250808-012023.png"
+                         alt="Tippanna Bangi"
+                         class="rounded-full w-64 h-64 md:w-80 md:h-80 object-contain object-top border-4 border-teal-500 shadow-2xl shadow-teal-500/20"
+                         onerror="this.onerror=null;this.src='https://placehold.co/320x320/212529/ced4da?text=Photo';">
+                </div>
             </div>
-          </div>
-          <a href="tel:+919113294949" class="glass rounded-xl p-5 gold-border flex items-center gap-4 hover:bg-white hover:bg-opacity-5 transition-all block">
-            <div class="text-2xl">📞</div>
-            <div>
-              <p class="font-semibold text-white text-sm mb-1">Phone / Call</p>
-              <p class="text-base font-bold" style="color:var(--gold-light)">+91 9113294949</p>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="container mx-auto px-6 md:px-12 py-8 bg-slate-800 rounded-3xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center section-title mx-auto">About Me</h2>
+            <p class="mt-8 text-center text-lg max-w-3xl mx-auto text-slate-300">
+                I am a tech-savvy graduate with a passion for technology, automation, and continuous learning. With nearly three years of experience as a Customer Associate at SquadStack, I have honed my skills in customer interaction, communication, and data handling. I am currently a trainee at Deshpande Skilling, where I'm further developing my technical and professional skills in areas like business communication, reasoning, aptitude, and technology. I am recognized for my adaptability, strong interpersonal skills, and a proactive approach to problem-solving.
+            </p>
+        </section>
+
+        <!-- Core Skills Section -->
+        <section id="skills" class="container mx-auto px-6 md:px-12 py-8">
+            <h2 class="text-3xl font-bold text-center section-title mx-auto">Core Skills</h2>
+            <div class="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Skill Card -->
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-md text-center hover:shadow-xl hover:bg-slate-700 transition-all duration-300">
+                    <h3 class="text-xl font-semibold text-white">Customer Orientation</h3>
+                </div>
+                <!-- Skill Card -->
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-md text-center hover:shadow-xl hover:bg-slate-700 transition-all duration-300">
+                    <h3 class="text-xl font-semibold text-white">Communication & Interpersonal Skills</h3>
+                </div>
+                <!-- Skill Card -->
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-md text-center hover:shadow-xl hover:bg-slate-700 transition-all duration-300">
+                    <h3 class="text-xl font-semibold text-white">Problem Solving & Logical Reasoning</h3>
+                </div>
+                <!-- Skill Card -->
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-md text-center hover:shadow-xl hover:bg-slate-700 transition-all duration-300">
+                    <h3 class="text-xl font-semibold text-white">Result-Oriented Approach</h3>
+                </div>
+                <!-- Skill Card -->
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-md text-center hover:shadow-xl hover:bg-slate-700 transition-all duration-300">
+                    <h3 class="text-xl font-semibold text-white">English & Kannada Proficiency</h3>
+                </div>
+                <!-- Skill Card -->
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-md text-center hover:shadow-xl hover:bg-slate-700 transition-all duration-300">
+                    <h3 class="text-xl font-semibold text-white">Basic Python & SQL</h3>
+                </div>
+                <!-- Skill Card -->
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-md text-center hover:shadow-xl hover:bg-slate-700 transition-all duration-300">
+                    <h3 class="text-xl font-semibold text-white">AI & Automation Tools (Basic)</h3>
+                </div>
+                <!-- Skill Card -->
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-md text-center hover:shadow-xl hover:bg-slate-700 transition-all duration-300">
+                    <h3 class="text-xl font-semibold text-white">MS Office & Google Workspace</h3>
+                </div>
             </div>
-          </a>
-          <a href="https://wa.me/919113294949" target="_blank" class="glass rounded-xl p-5 gold-border flex items-center gap-4 hover:bg-white hover:bg-opacity-5 transition-all block">
-            <div class="text-2xl">💬</div>
-            <div>
-              <p class="font-semibold text-white text-sm mb-1">WhatsApp</p>
-              <p class="text-base font-bold" style="color:#25D366">+91 9113294949</p>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="container mx-auto px-6 md:px-12 py-8 bg-slate-800 rounded-3xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center section-title mx-auto">My Projects</h2>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1: Notes Sharing Website -->
+                <div class="bg-slate-700 rounded-2xl shadow-lg overflow-hidden flex flex-col justify-between p-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white mb-2">Notes Sharing Website</h3>
+                        <p class="text-slate-300">A platform for sharing and accessing notes and academic resources, built on WordPress.</p>
+                    </div>
+                    <a href="https://gfgcrmd.wordpress.com/" target="_blank" class="mt-4 inline-block text-teal-400 font-medium hover:underline transition-colors">
+                        View Project →
+                    </a>
+                </div>
+                <!-- Project Card 2: Hotel GMB Profile -->
+                <div class="bg-slate-700 rounded-2xl shadow-lg overflow-hidden flex flex-col justify-between p-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white mb-2">Hotel Tirumala GMB Profile</h3>
+                        <p class="text-slate-300">Managed and optimized the Google My Business profile for Hotel Tirumala to improve online visibility and customer engagement.</p>
+                    </div>
+                    <a href="https://share.google/htrhpWbTCsEPCmuLZ" target="_blank" class="mt-4 inline-block text-teal-400 font-medium hover:underline transition-colors">
+                        View Profile →
+                    </a>
+                </div>
+                <!-- Project Card 3: Personal Blog -->
+                <div class="bg-slate-700 rounded-2xl shadow-lg overflow-hidden flex flex-col justify-between p-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white mb-2">My Personal Blog</h3>
+                        <p class="text-slate-300">A blog where I share my thoughts, experiences, and learnings on various topics.</p>
+                    </div>
+                    <a href="https://www.blogger.com/u/2/blog/posts/3731465789096262130" target="_blank" class="mt-4 inline-block text-teal-400 font-medium hover:underline transition-colors">
+                        Read Blog →
+                    </a>
+                </div>
             </div>
-          </a>
-        </div>
+        </section>
 
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="tel:+919113294949" class="pulse-btn gold-gradient text-black font-bold px-6 py-4 rounded-full text-base text-center flex-1 hover:opacity-90 transition-all">📞 Call Owner</a>
-          <a href="https://wa.me/919113294949" target="_blank" class="border font-bold px-6 py-4 rounded-full text-base text-center flex-1 hover:bg-white hover:bg-opacity-5 transition-all" style="border-color:rgba(201,168,76,0.4);color:var(--gold-light)">💬 WhatsApp Owner</a>
-        </div>
-
-        <div class="mt-6 rounded-xl overflow-hidden" style="border:1px solid rgba(201,168,76,0.2)">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5!2d77.4887!3d12.9082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3f0e1b1b1b1b%3A0x0!2sGLL+Living+Space+PG+for+Gents!5e0!3m2!1sen!2sin!4v1"
-            width="100%" height="220" style="border:0;display:block;" allowfullscreen="" loading="lazy"
-            title="GLL Living Space PG Location Map">
-          </iframe>
-          <a href="https://maps.app.goo.gl/GGyA4TYUFvTPxzk77?g_st=ac" target="_blank"
-            style="display:flex;align-items:center;justify-content:center;gap:0.6rem;background:linear-gradient(135deg,#9A7930,#C9A84C,#E8C97A);color:#000;font-weight:700;font-size:0.9rem;padding:0.9rem 1.5rem;letter-spacing:0.04em;text-decoration:none;transition:opacity 0.3s"
-            onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-            Get Directions — Open in Google Maps
-          </a>
-        </div>
-      </div>
-
-      <div class="reveal reveal-delay-2">
-        <div class="glass rounded-2xl p-7 gold-border">
-          <h3 class="display-font text-white mb-6" style="font-size:1.6rem;font-weight:600">Send an Inquiry</h3>
-          <div class="space-y-4">
-            <div>
-              <label class="text-xs font-medium tracking-wide mb-1.5 block" style="color:rgba(245,242,238,0.6)">YOUR NAME</label>
-              <input type="text" class="form-input" placeholder="Full Name" />
+        <!-- Work Experience Section -->
+        <section id="experience" class="container mx-auto px-6 md:px-12 py-8 bg-slate-800 rounded-3xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center section-title mx-auto">Work & Education</h2>
+            <div class="mt-8 space-y-10">
+                <!-- Experience Item -->
+                <div class="relative pl-8 sm:pl-32 group">
+                    <span class="h-full w-1 bg-teal-500 absolute left-0 sm:left-16 top-0 hidden sm:block"></span>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center">
+                        <div class="bg-teal-500 text-slate-900 rounded-full w-24 sm:w-28 py-2 text-center text-sm font-semibold flex-shrink-0 mb-4 sm:mb-0">
+                            ~3 Years
+                        </div>
+                        <div class="sm:ml-8">
+                            <h3 class="text-2xl font-bold text-white">Customer Associate</h3>
+                            <p class="text-slate-400">SquadStack | Remote</p>
+                            <ul class="mt-2 text-slate-300 list-disc list-inside space-y-1">
+                                <li>Interacted with leads and customers to deliver product insights and support.</li>
+                                <li>Maintained high communication standards to ensure customer satisfaction.</li>
+                                <li>Focused on data accuracy and performance metrics to meet team goals.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Trainee Item -->
+                <div class="relative pl-8 sm:pl-32 group">
+                    <span class="h-full w-1 bg-teal-500 absolute left-0 sm:left-16 top-0 hidden sm:block"></span>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center">
+                        <div class="bg-teal-500 text-slate-900 rounded-full w-24 sm:w-28 py-2 text-center text-sm font-semibold flex-shrink-0 mb-4 sm:mb-0">
+                            Trainee
+                        </div>
+                        <div class="sm:ml-8">
+                            <h3 class="text-2xl font-bold text-white">Trainee, Deshpande Skilling</h3>
+                            <p class="text-slate-400">Hubli, Karnataka</p>
+                            <ul class="mt-2 text-slate-300 list-disc list-inside space-y-1">
+                                <li>Developing skills in business communication, reasoning, aptitude, and technology.</li>
+                                <li>Participating in real-world projects and industry-oriented training.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Education Item -->
+                <div class="relative pl-8 sm:pl-32 group">
+                    <span class="h-full w-1 bg-teal-500 absolute left-0 sm:left-16 top-0 hidden sm:block"></span>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center">
+                        <div class="bg-teal-500 text-slate-900 rounded-full w-24 sm:w-28 py-2 text-center text-sm font-semibold flex-shrink-0 mb-4 sm:mb-0">
+                            Education
+                        </div>
+                        <div class="sm:ml-8">
+                            <h3 class="text-2xl font-bold text-white">Bachelor of Arts (B.A.) in Economics</h3>
+                            <p class="text-slate-400">Rani Channamma University, Belagavi | Completed</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Certifications Item -->
+                <div class="relative pl-8 sm:pl-32 group">
+                    <span class="h-full w-1 bg-teal-500 absolute left-0 sm:left-16 top-0 hidden sm:block"></span>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center">
+                        <div class="bg-teal-500 text-slate-900 rounded-full w-24 sm:w-28 py-2 text-center text-sm font-semibold flex-shrink-0 mb-4 sm:mb-0">
+                            Certifications
+                        </div>
+                        <div class="sm:ml-8">
+                            <h3 class="text-2xl font-bold text-white">Digital Marketing & Data Entry</h3>
+                            <p class="text-slate-400">Meta – Introduction to Digital Marketing</p>
+                            <p class="text-slate-400">EduBridge – Data Entry Operator</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-              <label class="text-xs font-medium tracking-wide mb-1.5 block" style="color:rgba(245,242,238,0.6)">PHONE NUMBER</label>
-              <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX" />
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="container mx-auto px-6 md:px-12 py-8 bg-slate-800 rounded-3xl shadow-xl">
+            <h2 class="text-3xl font-bold text-center section-title mx-auto">Get In Touch</h2>
+            <div class="mt-8 max-w-2xl mx-auto flex flex-col md:flex-row items-start md:space-x-12">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h3 class="text-2xl font-semibold text-white">Contact Details</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-teal-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.009-8-6.009V6h16zM4 18V9.754l7.633 5.725c.19.143.431.218.672.218s.482-.075.672-.218L20 9.754V18H4z"/></svg>
+                            <span>Tippannahbangi@gmail.com</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-teal-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.486 2 2 6.486 2 12c0 4.201 2.898 7.79 6.815 8.995l-1.637-2.182a1 1 0 0 1-.295-.717l.001-.137a1 1 0 0 1 .494-.852l3.411-1.706a1 1 0 0 1 .741-.016l1.328.665a1 1 0 0 1 .536.878l.001.077c0 .285-.145.545-.378.71l-1.571 1.178c-.234.175-.379.435-.379.711l.001.127a1 1 0 0 1-.38.71l-1.638 2.181a1 1 0 0 0 .528 1.543c.277.065.556.097.834.097 5.514 0 10-4.486 10-10C22 6.486 17.514 2 12 2zm0 2c4.411 0 8 3.589 8 8s-3.589 8-8 8-8-3.589-8-8 3.589-8 8-8zm.5 12h-1a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1zm-3-8h-1a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1zm6 0h-1a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1zm-3 4h-1a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1z"/></svg>
+                            <span>+91 7795610812</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <svg class="w-6 h-6 text-teal-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            <a href="https://www.linkedin.com/in/tippanna-bangi-2b1a77328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="text-slate-300 hover:text-teal-400">LinkedIn Profile</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Send a Message</h3>
+                    <!-- Tally form embed code -->
+                    <iframe data-tally-src="https://tally.so/embed/w26oMb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="200" frameborder="0" marginheight="0" marginwidth="0" title="GET IN TOUCH"></iframe>
+                    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+                </div>
             </div>
-            <div>
-              <label class="text-xs font-medium tracking-wide mb-1.5 block" style="color:rgba(245,242,238,0.6)">ROOM PREFERENCE</label>
-              <select class="form-input" style="cursor:pointer">
-                <option value="" style="background:#1A1A1A">Select room type</option>
-                <option value="double" style="background:#1A1A1A">Double Sharing</option>
-                <option value="triple" style="background:#1A1A1A">Triple Sharing</option>
-                <option value="any" style="background:#1A1A1A">Any Available</option>
-              </select>
-            </div>
-            <div>
-              <label class="text-xs font-medium tracking-wide mb-1.5 block" style="color:rgba(245,242,238,0.6)">MESSAGE</label>
-              <textarea class="form-input" rows="4" placeholder="Your message or questions..."></textarea>
-            </div>
-            <div class="flex flex-col gap-3 pt-2">
-              <button onclick="sendWhatsApp()" class="w-full gold-gradient text-black font-bold py-3.5 rounded-full text-base hover:opacity-90 transition-all">📤 Send via WhatsApp</button>
-              <a href="tel:+919113294949" class="w-full block text-center border font-bold py-3.5 rounded-full text-base hover:bg-white hover:bg-opacity-5 transition-all" style="border-color:rgba(201,168,76,0.4);color:var(--gold-light)">📞 Call Instead</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        </section>
 
-<footer class="py-14" style="background:#050505;border-top:1px solid rgba(201,168,76,0.15)">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-      <div>
-        <div class="flex items-center gap-3 mb-4">
-          <img src="Images/gll-living-space-pg-for-gents-kengeri.png.png" alt="GLL Living Space Logo" style="width:38px;height:38px;object-fit:cover;border-radius:50%;" />
-          <div>
-            <div class="display-font text-white font-semibold leading-none" style="font-size:1rem">GLL Living Space</div>
-            <div class="text-xs tracking-widest" style="color:var(--gold);font-size:0.6rem;letter-spacing:0.2em">PREMIUM GENTS PG</div>
-          </div>
-        </div>
-        <p class="text-xs" style="color:rgba(245,242,238,0.45);line-height:1.7">Premium men's PG accommodation near Global Village, Mailasandra, Bengaluru – 560059</p>
-      </div>
-      <div>
-        <p class="text-xs font-semibold tracking-widest uppercase mb-4" style="color:var(--gold)">Quick Links</p>
-        <ul class="space-y-2">
-          <li><a href="#about" class="text-xs hover:text-yellow-400 transition-colors" style="color:rgba(245,242,238,0.5)">About Us</a></li>
-          <li><a href="#rooms" class="text-xs hover:text-yellow-400 transition-colors" style="color:rgba(245,242,238,0.5)">Rooms</a></li>
-          <li><a href="#amenities" class="text-xs hover:text-yellow-400 transition-colors" style="color:rgba(245,242,238,0.5)">Amenities</a></li>
-          <li><a href="#gallery" class="text-xs hover:text-yellow-400 transition-colors" style="color:rgba(245,242,238,0.5)">Gallery</a></li>
-          <li><a href="#reviews" class="text-xs hover:text-yellow-400 transition-colors" style="color:rgba(245,242,238,0.5)">Reviews</a></li>
-          <li><a href="#faq" class="text-xs hover:text-yellow-400 transition-colors" style="color:rgba(245,242,238,0.5)">FAQ</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="text-xs font-semibold tracking-widest uppercase mb-4" style="color:var(--gold)">Contact</p>
-        <ul class="space-y-2">
-          <li class="text-xs" style="color:rgba(245,242,238,0.5)">📍 Behind Karnataka Bank, Near Raj Vista Hotel, Global Village, Mailasandra, Bengaluru – 560059</li>
-          <li><a href="tel:+919113294949" class="text-xs hover:text-yellow-400 transition-colors" style="color:rgba(245,242,238,0.5)">📞 +91 9113294949</a></li>
-          <li><a href="https://wa.me/919113294949" target="_blank" class="text-xs hover:text-yellow-400 transition-colors" style="color:rgba(245,242,238,0.5)">💬 WhatsApp Us</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="text-xs font-semibold tracking-widest uppercase mb-4" style="color:var(--gold)">Book Now</p>
-        <p class="text-xs mb-4" style="color:rgba(245,242,238,0.5);line-height:1.7">Don't wait — call now and secure your stay before rooms fill up.</p>
-        <a href="tel:+919113294949" class="pulse-btn block gold-gradient text-black font-bold py-3 rounded-full text-sm text-center hover:opacity-90 transition-all mb-2">📞 Call Now</a>
-        <a href="https://wa.me/919113294949" target="_blank" class="block border text-center font-medium py-3 rounded-full text-sm hover:bg-white hover:bg-opacity-5 transition-all" style="border-color:rgba(201,168,76,0.3);color:var(--gold-light)">💬 WhatsApp</a>
-      </div>
-    </div>
-    <div style="border-top:1px solid rgba(201,168,76,0.1);padding-top:2rem;text-align:center">
-      <p class="text-xs" style="color:rgba(245,242,238,0.25)">© 2024 GLL Living Space PG for Gents. All Rights Reserved. · Mailasandra, Bengaluru – 560059</p>
-    </div>
-  </div>
-</footer>
+    </main>
 
-<script>
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  if (window.scrollY > 60) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-});
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 p-8 text-center border-t border-slate-800">
+        <p>© 2025 Tippanna Bangi. All rights reserved.</p>
+        <p class="mt-2">Developed with Tailwind CSS</p>
+    </footer>
 
-const slides = document.querySelectorAll('.hero-slide');
-const dotsContainer = document.getElementById('hero-dots');
-let current = 0;
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
 
-slides.forEach((_, i) => {
-  const dot = document.createElement('div');
-  dot.style.cssText = `width:8px;height:8px;border-radius:50%;cursor:pointer;transition:all 0.3s;background:${i===0?'#C9A84C':'rgba(255,255,255,0.3)'}`;
-  dot.onclick = () => goSlide(i);
-  dotsContainer.appendChild(dot);
-});
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-function goSlide(n) {
-  slides[current].classList.remove('active');
-  dotsContainer.children[current].style.background = 'rgba(255,255,255,0.3)';
-  dotsContainer.children[current].style.width = '8px';
-  current = (n + slides.length) % slides.length;
-  slides[current].classList.add('active');
-  dotsContainer.children[current].style.background = '#C9A84C';
-  dotsContainer.children[current].style.width = '24px';
-  dotsContainer.children[current].style.borderRadius = '4px';
-}
-dotsContainer.children[0].style.width = '24px';
-dotsContainer.children[0].style.borderRadius = '4px';
-setInterval(() => goSlide(current + 1), 4500);
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-function openLightbox(src) {
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-let reviewOffset = 0;
-function slideReviews(dir) {
-  const track = document.getElementById('reviews-track');
-  const card = track.querySelector('.review-card');
-  const cardW = card.offsetWidth + 24;
-  const maxOffset = -(track.scrollWidth - track.parentElement.offsetWidth);
-  reviewOffset = Math.max(maxOffset, Math.min(0, reviewOffset + dir * -cardW));
-  track.style.transform = `translateX(${reviewOffset}px)`;
-}
-
-setInterval(() => slideReviews(1), 4000);
-
-function toggleFaq(i) {
-  const answer = document.getElementById('faq-answer-' + i);
-  const icon = document.getElementById('faq-icon-' + i);
-  answer.classList.toggle('open');
-  icon.classList.toggle('open');
-}
-
-function sendWhatsApp() {
-  const name = document.querySelector('input[type="text"]').value || 'Visitor';
-  const phone = document.querySelector('input[type="tel"]').value || 'Not provided';
-  const room = document.querySelector('select').value || 'Not specified';
-  const msg = document.querySelector('textarea').value || 'No message';
-  const text = `Hi GLL Living Space! I'm interested in a room.\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Room Preference:* ${room}\n*Message:* ${msg}`;
-  window.open('https://wa.me/919113294949?text=' + encodeURIComponent(text), '_blank');
-}
-
-function openMenu() {
-  const drawer = document.getElementById('menu-drawer');
-  const overlay = document.getElementById('menu-overlay');
-  const menu = document.getElementById('mobile-menu');
-  menu.style.pointerEvents = 'auto';
-  drawer.style.transform = 'translateX(0)';
-  overlay.style.background = 'rgba(0,0,0,0.7)';
-  overlay.style.pointerEvents = 'auto';
-  document.body.style.overflow = 'hidden';
-}
-function closeMenu() {
-  const drawer = document.getElementById('menu-drawer');
-  const overlay = document.getElementById('menu-overlay');
-  const menu = document.getElementById('mobile-menu');
-  drawer.style.transform = 'translateX(100%)';
-  overlay.style.background = 'rgba(0,0,0,0)';
-  overlay.style.pointerEvents = 'none';
-  menu.style.pointerEvents = 'none';
-  document.body.style.overflow = '';
-}
-</script>
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
