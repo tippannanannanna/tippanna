@@ -1,421 +1,487 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tippanna Bangi | Creative Portfolio</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inter Font from Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
-    <style>
-        /* General styling for the body and fonts */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0F172A; /* Slate-900 dark background */
-        }
-        /* Custom scrollbar for a cleaner look */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1E293B; /* Slate-800 */
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #475569; /* Slate-600 */
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0D9488; /* Teal-600 */
-        }
-        /* A custom class for the animated underline on section titles */
-        .section-title {
-            position: relative;
-            display: inline-block;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 75%;
-            height: 4px;
-            background: #0D9488; /* Teal-600 accent */
-            border-radius: 9999px;
-            transition: all 0.3s ease-in-out;
-        }
-        /* Fade-in effect for sections */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tippanna Bangi — Freelance Web Designer &amp; Developer</title>
+<meta name="description" content="I build modern, fast, mobile-friendly websites that help businesses attract more customers and increase trust.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#070912;
+    --bg-2:#0b0e1c;
+    --blue:#3b82f6;
+    --purple:#8b5cf6;
+    --cyan:#22d3ee;
+    --green-1:#25D366;
+    --green-2:#0fae66;
+    --glass: rgba(255,255,255,0.055);
+    --glass-border: rgba(255,255,255,0.10);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:#eef1f8;
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.02em;
+  }
+  ::selection{ background: var(--purple); color:#fff; }
+
+  a{color:inherit; text-decoration:none;}
+
+  .container{ max-width:1200px; margin:0 auto; padding:0 24px; }
+
+  /* ---------- Preloader ---------- */
+  #preloader{
+    position:fixed; inset:0; background:var(--bg); z-index:999;
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:18px;
+    transition:opacity .6s ease, visibility .6s ease;
+  }
+  #preloader.hide{ opacity:0; visibility:hidden; }
+  .loader-ring{
+    width:56px; height:56px; border-radius:50%;
+    border:3px solid rgba(255,255,255,0.08);
+    border-top-color:var(--cyan);
+    border-right-color:var(--purple);
+    animation:spin 0.9s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .loader-text{ font-family:'Space Grotesk'; font-size:14px; letter-spacing:.3em; color:#9aa3b8; text-transform:uppercase; }
+
+  /* ---------- Background atmosphere ---------- */
+  .bg-mesh{
+    position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+  }
+  .blob{
+    position:absolute; border-radius:50%; filter:blur(90px); opacity:.35;
+    animation:float 16s ease-in-out infinite;
+  }
+  .blob.b1{ width:480px; height:480px; background:radial-gradient(circle,var(--blue),transparent 70%); top:-140px; left:-120px; animation-delay:0s;}
+  .blob.b2{ width:520px; height:520px; background:radial-gradient(circle,var(--purple),transparent 70%); top:30%; right:-180px; animation-delay:-5s;}
+  .blob.b3{ width:420px; height:420px; background:radial-gradient(circle,var(--cyan),transparent 70%); bottom:-160px; left:20%; animation-delay:-10s;}
+  @keyframes float{
+    0%,100%{ transform:translate(0,0) scale(1); }
+    33%{ transform:translate(40px,-30px) scale(1.08); }
+    66%{ transform:translate(-30px,25px) scale(0.95); }
+  }
+  .grain{
+    position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  section{ position:relative; z-index:2; }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(16px);
+    background:rgba(7,9,18,0.55);
+    border-bottom:1px solid var(--glass-border);
+  }
+  nav .inner{ display:flex; align-items:center; justify-content:space-between; padding:16px 24px; }
+  .logo{ font-family:'Space Grotesk'; font-weight:700; font-size:19px; }
+  .logo span{ background:linear-gradient(90deg,var(--blue),var(--purple),var(--cyan)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:linear-gradient(135deg,var(--green-1),var(--green-2));
+    color:#fff; font-weight:600; font-size:14px; padding:10px 18px; border-radius:999px;
+    box-shadow:0 6px 20px rgba(37,211,102,0.35);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .nav-cta:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(37,211,102,0.5); }
+
+  /* ---------- Glass utility ---------- */
+  .glass{
+    background:var(--glass);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+  }
+
+  .grad-text{
+    background:linear-gradient(90deg,var(--blue),var(--purple) 50%,var(--cyan));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#9db2ff;
+    padding:6px 14px; border-radius:999px;
+    background:rgba(139,92,246,0.10); border:1px solid rgba(139,92,246,0.25);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100svh; display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:140px 24px 100px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.6rem);
+    font-weight:700; line-height:1.05; max-width:920px; margin:22px auto 0;
+  }
+  .hero p.sub{
+    max-width:640px; margin:26px auto 0; font-size:clamp(1rem,2vw,1.2rem);
+    color:#aab2c8; line-height:1.65;
+  }
+
+  .whatsapp-hero-btn{
+    position:relative; display:inline-flex; align-items:center; gap:14px;
+    margin-top:44px; padding:22px 44px; border-radius:100px;
+    background:linear-gradient(135deg,var(--green-1),var(--green-2));
+    font-size:clamp(1.05rem,2vw,1.3rem); font-weight:700; color:#fff;
+    box-shadow:0 15px 45px rgba(37,211,102,0.4), inset 0 1px 0 rgba(255,255,255,0.25);
+    animation:floaty 3.2s ease-in-out infinite;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .whatsapp-hero-btn:hover{ transform:translateY(-4px) scale(1.03); box-shadow:0 20px 55px rgba(37,211,102,0.55); }
+  @keyframes floaty{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+
+  .hero-stats{
+    display:flex; flex-wrap:wrap; gap:34px; justify-content:center; margin-top:56px;
+  }
+  .hero-stats .stat{ text-align:center; }
+  .hero-stats .stat b{ display:block; font-family:'Space Grotesk'; font-size:1.7rem; font-weight:700; }
+  .hero-stats .stat span{ font-size:.8rem; color:#8891a8; letter-spacing:.05em; text-transform:uppercase; }
+
+  /* ---------- Reveal ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Section heading ---------- */
+  .section-head{ text-align:center; max-width:680px; margin:0 auto 56px; }
+  .section-head h2{ font-size:clamp(1.9rem,4vw,2.8rem); font-weight:700; margin:16px 0 14px; }
+  .section-head p{ color:#9aa3b8; font-size:1.02rem; line-height:1.6; }
+
+  section.pad{ padding:120px 0; }
+
+  /* ---------- Proof / mockup ---------- */
+  .device-wrap{ display:flex; justify-content:center; perspective:1400px; }
+  .browser{
+    width:100%; max-width:920px; border-radius:18px; overflow:hidden;
+    transform:rotateX(3deg);
+    box-shadow:0 40px 90px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06);
+    animation:hover-device 6s ease-in-out infinite;
+  }
+  @keyframes hover-device{ 0%,100%{ transform:rotateX(3deg) translateY(0);} 50%{ transform:rotateX(1deg) translateY(-14px);} }
+  .browser-bar{
+    display:flex; align-items:center; gap:8px; padding:12px 16px;
+    background:linear-gradient(180deg,#1b1f2e,#12151f);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .browser-dot{ width:11px; height:11px; border-radius:50%; }
+  .browser-url{
+    flex:1; margin-left:14px; background:rgba(255,255,255,0.06); border-radius:8px;
+    padding:6px 14px; font-size:12.5px; color:#9aa3b8; text-align:left; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;
+  }
+  .browser iframe{ width:100%; height:520px; border:0; display:block; background:#fff; }
+  @media(max-width:700px){ .browser iframe{ height:380px; } }
+
+  .glow-ring{
+    position:absolute; inset:-40px; z-index:-1; border-radius:40px; filter:blur(60px); opacity:.4;
+    background:linear-gradient(135deg,var(--blue),var(--purple),var(--cyan));
+  }
+
+  .check-row{ display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-top:38px; }
+  .check-pill{
+    display:flex; align-items:center; gap:8px; padding:10px 18px; border-radius:999px; font-size:.9rem; font-weight:600;
+  }
+  .check-pill svg{ width:16px; height:16px; color:var(--cyan); flex-shrink:0; }
+
+  .btn-outline{
+    display:inline-flex; align-items:center; gap:10px; margin-top:38px; padding:15px 32px; border-radius:100px;
+    border:1px solid rgba(255,255,255,0.18); font-weight:600; font-size:.98rem;
+    transition:all .25s ease;
+  }
+  .btn-outline:hover{ background:#fff; color:#0a0d16; border-color:#fff; transform:translateY(-2px); }
+
+  /* ---------- Cards grid ---------- */
+  .grid{ display:grid; gap:22px; }
+  .grid.services{ grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
+  .grid.features{ grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+
+  .card{
+    border-radius:20px; padding:30px 26px; position:relative; overflow:hidden;
+    transition:transform .35s ease, border-color .35s ease, background .35s ease;
+  }
+  .card::before{
+    content:""; position:absolute; inset:0; opacity:0; transition:opacity .35s ease;
+    background:linear-gradient(135deg,rgba(59,130,246,0.14),rgba(139,92,246,0.14),rgba(34,211,238,0.14));
+  }
+  .card:hover{ transform:translateY(-8px); border-color:rgba(255,255,255,0.22); }
+  .card:hover::before{ opacity:1; }
+  .card .icon{
+    width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    font-size:24px; margin-bottom:18px; position:relative; z-index:1;
+    background:linear-gradient(135deg,rgba(59,130,246,0.22),rgba(139,92,246,0.22));
+    border:1px solid rgba(255,255,255,0.12);
+  }
+  .card h3{ font-size:1.12rem; margin:0 0 8px; position:relative; z-index:1; }
+  .card p{ font-size:.92rem; color:#9aa3b8; line-height:1.55; margin:0; position:relative; z-index:1; }
+
+  /* ---------- Process timeline ---------- */
+  .timeline{
+    display:flex; gap:0; overflow-x:auto; padding:20px 4px 30px; scrollbar-width:none;
+  }
+  .timeline::-webkit-scrollbar{ display:none; }
+  .tl-step{
+    flex:1 0 200px; text-align:center; position:relative; padding:0 14px;
+  }
+  .tl-num{
+    width:56px; height:56px; border-radius:50%; margin:0 auto 18px; display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk'; font-weight:700; font-size:1.15rem;
+    background:linear-gradient(135deg,var(--blue),var(--purple));
+    box-shadow:0 10px 30px rgba(139,92,246,0.4);
+  }
+  .tl-line{
+    position:absolute; top:28px; left:calc(-50% + 28px); width:calc(100% - 56px); height:2px;
+    background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.18),rgba(255,255,255,0.02));
+  }
+  .tl-step:first-child .tl-line{ display:none; }
+  .tl-step h4{ font-size:1.02rem; margin:0 0 6px; }
+  .tl-step p{ font-size:.85rem; color:#8891a8; margin:0; }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    text-align:center; padding:130px 24px; position:relative;
+    background:radial-gradient(60% 100% at 50% 0%, rgba(139,92,246,0.14), transparent 70%);
+  }
+  .final-cta h2{ font-size:clamp(2.1rem,5vw,3.4rem); font-weight:700; margin-bottom:18px; }
+  .final-cta p{ color:#aab2c8; max-width:520px; margin:0 auto 42px; font-size:1.05rem; line-height:1.6; }
+  .whatsapp-final-btn{
+    display:inline-flex; align-items:center; gap:14px; padding:24px 50px; border-radius:100px;
+    background:linear-gradient(135deg,var(--green-1),var(--green-2)); color:#fff;
+    font-size:clamp(1.1rem,2.4vw,1.4rem); font-weight:700;
+    box-shadow:0 20px 60px rgba(37,211,102,0.45);
+    position:relative;
+  }
+  .whatsapp-final-btn::after{
+    content:""; position:absolute; inset:0; border-radius:100px;
+    box-shadow:0 0 0 0 rgba(37,211,102,0.55);
+    animation:pulse-ring 2.2s cubic-bezier(0.4,0,0.6,1) infinite;
+  }
+  @keyframes pulse-ring{
+    0%{ box-shadow:0 0 0 0 rgba(37,211,102,0.55); }
+    70%{ box-shadow:0 0 0 26px rgba(37,211,102,0); }
+    100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); }
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--glass-border); padding:50px 24px 40px; text-align:center;
+  }
+  footer .name{ font-family:'Space Grotesk'; font-weight:700; font-size:1.3rem; }
+  footer .role{ color:#9aa3b8; font-size:.92rem; margin-top:6px; }
+  footer .wa{ margin-top:18px; display:inline-flex; align-items:center; gap:8px; color:#4ade80; font-weight:600; font-size:.95rem; }
+  footer .copy{ margin-top:28px; color:#5c6478; font-size:.8rem; }
+
+  /* ---------- Floating fixed WhatsApp button ---------- */
+  .fab-whatsapp{
+    position:fixed; right:22px; bottom:22px; z-index:80;
+    width:64px; height:64px; border-radius:50%;
+    background:linear-gradient(135deg,var(--green-1),var(--green-2));
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 12px 34px rgba(37,211,102,0.5);
+    animation:pulse-ring 2.4s cubic-bezier(0.4,0,0.6,1) infinite;
+  }
+  .fab-whatsapp svg{ width:30px; height:30px; fill:#fff; }
+  .fab-whatsapp .fab-label{
+    position:absolute; right:76px; white-space:nowrap; background:#111528; border:1px solid var(--glass-border);
+    padding:8px 14px; border-radius:10px; font-size:.82rem; font-weight:600; opacity:0; transform:translateX(8px);
+    transition:opacity .25s ease, transform .25s ease; pointer-events:none;
+  }
+  .fab-whatsapp:hover .fab-label{ opacity:1; transform:translateX(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  @media(max-width:640px){
+    .fab-whatsapp{ width:58px; height:58px; right:16px; bottom:16px; }
+    section.pad{ padding:80px 0; }
+  }
+</style>
 </head>
-<body class="bg-slate-900 text-slate-100 antialiased">
+<body>
 
-    <!-- Header & Navigation -->
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md shadow-lg transition-all duration-300 ease-in-out">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-3xl font-black text-teal-400">Tippanna Bangi</a>
-            <div class="hidden md:flex space-x-8 font-medium">
-                <a href="#about" class="text-slate-300 hover:text-teal-400 transition-colors">About</a>
-                <a href="#skills" class="text-slate-300 hover:text-teal-400 transition-colors">Skills</a>
-                <a href="#projects" class="text-slate-300 hover:text-teal-400 transition-colors">Projects</a>
-                <a href="#experience" class="text-slate-300 hover:text-teal-400 transition-colors">Experience</a>
-                <a href="#certifications" class="text-slate-300 hover:text-teal-400 transition-colors">Certifications</a>
-                <a href="#contact" class="text-slate-300 hover:text-teal-400 transition-colors">Contact</a>
-            </div>
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-slate-300 hover:text-teal-400 focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-800/90 shadow-sm">
-            <a href="#about" class="block px-6 py-3 text-slate-300 hover:bg-slate-700">About</a>
-            <a href="#skills" class="block px-6 py-3 text-slate-300 hover:bg-slate-700">Skills</a>
-            <a href="#projects" class="block px-6 py-3 text-slate-300 hover:bg-slate-700">Projects</a>
-            <a href="#experience" class="block px-6 py-3 text-slate-300 hover:bg-slate-700">Experience</a>
-            <a href="#certifications" class="block px-6 py-3 text-slate-300 hover:bg-slate-700">Certifications</a>
-            <a href="#contact" class="block px-6 py-3 text-slate-300 hover:bg-slate-700">Contact</a>
+<div id="preloader">
+  <div class="loader-ring"></div>
+  <div class="loader-text">Loading</div>
+</div>
+
+<div class="bg-mesh">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+<div class="grain"></div>
+
+<nav>
+  <div class="inner container">
+    <div class="logo">Tippanna<span>.</span></div>
+    <a href="https://wa.me/917795290707?text=Hi%2C%20I%20need%20a%20website.%20Can%20you%20help%3F" target="_blank" rel="noopener" class="nav-cta">💬 WhatsApp</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow reveal">● Available for new projects</span>
+    <h1 class="reveal">Grow Your Business with a <span class="grad-text">Professional Website</span></h1>
+    <p class="sub reveal">I build modern, fast, mobile-friendly websites that help businesses attract more customers and increase trust.</p>
+    <a href="https://wa.me/917795290707?text=Hi%2C%20I%20need%20a%20website.%20Can%20you%20help%3F" target="_blank" rel="noopener" class="whatsapp-hero-btn reveal">
+      💬 Chat on WhatsApp
+    </a>
+    <div class="hero-stats reveal">
+      <div class="stat"><b>5+</b><span>Websites Delivered</span></div>
+      <div class="stat"><b>100%</b><span>Mobile Ready</span></div>
+      <div class="stat"><b>24–72h</b><span>Response Time</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="pad" id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Case Study</span>
+      <h2>Recent Client <span class="grad-text">Project</span></h2>
+      <p>A live website built end-to-end — design, development, and launch.</p>
+    </div>
+
+    <div class="device-wrap reveal" style="position:relative;">
+      <div class="glow-ring"></div>
+      <div class="browser glass">
+        <div class="browser-bar">
+          <span class="browser-dot" style="background:#ff5f57;"></span>
+          <span class="browser-dot" style="background:#febc2e;"></span>
+          <span class="browser-dot" style="background:#28c840;"></span>
+          <div class="browser-url">🔒 glllivingspace.in</div>
         </div>
-    </header>
+        <iframe src="https://glllivingspace.in/" loading="lazy" title="GLL Living Space live preview"></iframe>
+      </div>
+    </div>
 
-    <main class="space-y-28 py-16">
+    <div class="check-row reveal">
+      <span class="check-pill glass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>Live Website</span>
+      <span class="check-pill glass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>Mobile Friendly</span>
+      <span class="check-pill glass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>Fast Loading</span>
+      <span class="check-pill glass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>SEO Ready</span>
+    </div>
 
-        <!-- Hero Section -->
-        <section id="hero" class="container mx-auto px-6 md:px-12 mt-20 fade-in-section">
-            <div class="grid md:grid-cols-2 items-center gap-12 md:gap-24">
-                <div class="text-center md:text-left animate-fade-in-up">
-                    <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight">
-                        <span class="text-teal-400">Hello,</span> I'm <br class="hidden md:inline"> Tippanna Bangi
-                    </h1>
-                    <p class="mt-6 text-lg md:text-xl text-slate-300 leading-relaxed max-w-xl">
-                        A motivated and tech-savvy graduate with a passion for technology and automation. I'm skilled in communication and proactive problem-solving.
-                    </p>
-                    <div class="mt-8 flex justify-center md:justify-start space-x-4">
-                        <a href="#contact" class="bg-teal-500 text-slate-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-teal-400 transition-colors duration-300 transform hover:scale-105">
-                            Get In Touch
-                        </a>
-                        <a href="#projects" class="bg-slate-700 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-slate-600 transition-colors duration-300 transform hover:scale-105">
-                            View Work
-                        </a>
-                    </div>
-                </div>
-                <div class="flex justify-center md:justify-end">
-                    <!-- Updated photo with new image and class styling -->
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 group">
-                        <div class="absolute inset-0 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-full blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
-                        <img src="https://i.ibb.co/pvwhFQcK/IMG-20250808-012023.png"
-                             alt="Tippanna Bangi"
-                             class="relative rounded-full w-full h-full object-cover border-4 border-teal-500 shadow-2xl transition-transform duration-500 transform group-hover:scale-105"
-                             onerror="this.onerror=null;this.src='https://placehold.co/320x320/1e293b/d1d5db?text=Tippanna';">
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div style="text-align:center;">
+      <a href="https://glllivingspace.in/" target="_blank" rel="noopener" class="btn-outline reveal">Visit Live Website ↗</a>
+    </div>
+  </div>
+</section>
 
-        <!-- About Me Section -->
-        <section id="about" class="container mx-auto px-6 md:px-12 py-16 bg-slate-800 rounded-3xl shadow-xl fade-in-section">
-            <h2 class="text-4xl md:text-5xl font-bold text-center section-title mx-auto pb-4">About Me</h2>
-            <div class="mt-12 text-center text-lg max-w-4xl mx-auto text-slate-300">
-                <p>
-                    I am a tech-savvy graduate with a passion for technology, automation, and continuous learning. With nearly three years of experience as a Customer Associate at SquadStack, I have honed my skills in customer interaction, communication, and data handling.
-                </p>
-                <p class="mt-4">
-                    I am currently a trainee at Deshpande Skilling, where I'm further developing my technical and professional skills in areas like business communication, reasoning, aptitude, and technology. I am recognized for my adaptability, strong interpersonal skills, and a proactive approach to problem-solving.
-                </p>
-            </div>
-        </section>
+<!-- SERVICES -->
+<section class="pad" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What I Offer</span>
+      <h2>Services Built to <span class="grad-text">Convert</span></h2>
+      <p>From first impression to first inquiry — every service is built around getting you more customers.</p>
+    </div>
+    <div class="grid services">
+      <div class="card glass reveal"><div class="icon">🎨</div><h3>Website Design</h3><p>Clean, modern visual design tailored to your brand and audience.</p></div>
+      <div class="card glass reveal"><div class="icon">🚀</div><h3>Business Landing Pages</h3><p>High-converting single pages built to turn visitors into leads.</p></div>
+      <div class="card glass reveal"><div class="icon">🏠</div><h3>PG Websites</h3><p>Booking-ready websites for PGs and hostels with clear inquiry paths.</p></div>
+      <div class="card glass reveal"><div class="icon">🏨</div><h3>Hotel Websites</h3><p>Showcase rooms, amenities, and location with a booking-first layout.</p></div>
+      <div class="card glass reveal"><div class="icon">📍</div><h3>Google Business Profile Support</h3><p>Get found on Google Maps and Search with a properly set up profile.</p></div>
+      <div class="card glass reveal"><div class="icon">📱</div><h3>Mobile Responsive Design</h3><p>Looks and works perfectly on every phone, tablet, and screen size.</p></div>
+      <div class="card glass reveal"><div class="icon">🔎</div><h3>SEO Friendly Websites</h3><p>Built with clean structure and speed so you rank and get discovered.</p></div>
+      <div class="card glass reveal"><div class="icon">🛠️</div><h3>Website Maintenance</h3><p>Ongoing updates, fixes, and support so your site keeps performing.</p></div>
+    </div>
+  </div>
+</section>
 
-        <!-- Core Skills Section -->
-        <section id="skills" class="container mx-auto px-6 md:px-12 fade-in-section">
-            <h2 class="text-4xl md:text-5xl font-bold text-center section-title mx-auto pb-4">Core Skills</h2>
-            <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-                <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
-                    <!-- SVG Icon for Customer Orientation -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users text-teal-400 transition-colors duration-300 group-hover:text-white"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    <h3 class="text-xl font-semibold text-white">Customer Orientation</h3>
-                </div>
-                <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
-                    <!-- SVG Icon for Communication -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square text-teal-400 transition-colors duration-300 group-hover:text-white"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    <h3 class="text-xl font-semibold text-white">Communication Skills</h3>
-                </div>
-                <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
-                    <!-- SVG Icon for Problem Solving -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb text-teal-400 transition-colors duration-300 group-hover:text-white"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
-                    <h3 class="text-xl font-semibold text-white">Problem Solving</h3>
-                </div>
-                <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
-                    <!-- SVG Icon for Result-Oriented -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target text-teal-400 transition-colors duration-300 group-hover:text-white"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
-                    <h3 class="text-xl font-semibold text-white">Result-Oriented</h3>
-                </div>
-                <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
-                    <!-- SVG Icon for Python & SQL -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code text-teal-400 transition-colors duration-300 group-hover:text-white"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    <h3 class="text-xl font-semibold text-white">Python & SQL</h3>
-                </div>
-                <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
-                    <!-- SVG Icon for AI & Automation -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot text-teal-400 transition-colors duration-300 group-hover:text-white"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 18h2"/><path d="M7 18h2"/></svg>
-                    <h3 class="text-xl font-semibold text-white">AI & Automation</h3>
-                </div>
-                <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
-                    <!-- Updated SVG Icon for MS Office & Google Workspace -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-stack text-teal-400 transition-colors duration-300 group-hover:text-white"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.414A2 2 0 0 0 15.414 2H14"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 16H8"/><path d="M15 16h-2"/><path d="M9 12H8"/><path d="M15 12h-2"/><path d="M9 8H8"/><path d="M15 8h-2"/></svg>
-                    <h3 class="text-xl font-semibold text-white">MS Office & Google Workspace</h3>
-                </div>
-                <!-- Skill Card -->
-                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg text-center flex flex-col items-center justify-center space-y-3 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-slate-700 group">
-                    <!-- SVG Icon for Languages -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe text-teal-400 transition-colors duration-300 group-hover:text-white"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                    <h3 class="text-xl font-semibold text-white">English & Kannada</h3>
-                </div>
-            </div>
-        </section>
+<!-- WHY CHOOSE ME -->
+<section class="pad" id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Choose Me</span>
+      <h2>Designed to <span class="grad-text">Perform</span>, Not Just Look Good</h2>
+    </div>
+    <div class="grid features">
+      <div class="card glass reveal"><div class="icon">⚡</div><h3>Fast Delivery</h3><p>Your website built and launched without unnecessary delays.</p></div>
+      <div class="card glass reveal"><div class="icon">📱</div><h3>Mobile Responsive</h3><p>Flawless experience across every device, every time.</p></div>
+      <div class="card glass reveal"><div class="icon">🎨</div><h3>Premium Design</h3><p>Modern visuals that make your business look trustworthy instantly.</p></div>
+      <div class="card glass reveal"><div class="icon">🚀</div><h3>High Performance</h3><p>Optimized for speed so visitors never bounce before they convert.</p></div>
+      <div class="card glass reveal"><div class="icon">🔒</div><h3>Secure</h3><p>Best-practice security so your site and customers stay protected.</p></div>
+      <div class="card glass reveal"><div class="icon">📈</div><h3>Helps Generate More Leads</h3><p>Every page is designed with one goal — turning visits into inquiries.</p></div>
+    </div>
+  </div>
+</section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="container mx-auto px-6 md:px-12 py-16 bg-slate-800 rounded-3xl shadow-xl fade-in-section">
-            <h2 class="text-4xl md:text-5xl font-bold text-center section-title mx-auto pb-4">My Projects</h2>
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1: Notes Sharing Website -->
-                <div class="bg-slate-700 rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                    <img src="https://placehold.co/600x400/1e293b/d1d5db?text=Notes+Website" alt="Notes Sharing Website" class="w-full h-48 object-cover">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-2xl font-semibold text-white mb-2">Notes Sharing Website</h3>
-                        <p class="text-slate-300 flex-grow">A platform for sharing and accessing academic resources and notes, built on WordPress.</p>
-                        <a href="https://gfgcrmd.wordpress.com/" target="_blank" class="mt-4 inline-block text-teal-400 font-medium hover:underline transition-colors">
-                            View Project →
-                        </a>
-                    </div>
-                </div>
-                <!-- Project Card 2: Hotel GMB Profile -->
-                <div class="bg-slate-700 rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                    <img src="https://placehold.co/600x400/1e293b/d1d5db?text=Hotel+Profile" alt="Hotel GMB Profile" class="w-full h-48 object-cover">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-2xl font-semibold text-white mb-2">Hotel Tirumala GMB Profile</h3>
-                        <p class="text-slate-300 flex-grow">Managed and optimized the Google My Business profile to improve online visibility and customer engagement.</p>
-                        <a href="https://share.google/htrhpWbTCsEPCmuLZ" target="_blank" class="mt-4 inline-block text-teal-400 font-medium hover:underline transition-colors">
-                            View Profile →
-                        </a>
-                    </div>
-                </div>
-                <!-- Project Card 3: Personal Blog -->
-                <div class="bg-slate-700 rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                    <img src="https://placehold.co/600x400/1e293b/d1d5db?text=Personal+Blog" alt="Personal Blog" class="w-full h-48 object-cover">
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-2xl font-semibold text-white mb-2">My Personal Blog</h3>
-                        <p class="text-slate-300 flex-grow">A blog where I share my thoughts, experiences, and learnings on various topics.</p>
-                        <a href="https://tippannabangi.blogspot.com/" target="_blank" class="mt-4 inline-block text-teal-400 font-medium hover:underline transition-colors">
-                            Read Blog →
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- PROCESS -->
+<section class="pad" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How It Works</span>
+      <h2>A Simple <span class="grad-text">5-Step Process</span></h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-step"><div class="tl-num">1</div><h4>Contact Me</h4><p>Reach out on WhatsApp to get started.</p></div>
+      <div class="tl-step"><div class="tl-line"></div><div class="tl-num">2</div><h4>Discuss Requirements</h4><p>We talk through your goals and needs.</p></div>
+      <div class="tl-step"><div class="tl-line"></div><div class="tl-num">3</div><h4>Design</h4><p>A custom design tailored to your brand.</p></div>
+      <div class="tl-step"><div class="tl-line"></div><div class="tl-num">4</div><h4>Development</h4><p>Your site is built to be fast and reliable.</p></div>
+      <div class="tl-step"><div class="tl-line"></div><div class="tl-num">5</div><h4>Launch</h4><p>Your website goes live and starts working for you.</p></div>
+    </div>
+  </div>
+</section>
 
-        <!-- Work Experience & Education Section -->
-        <section id="experience" class="container mx-auto px-6 md:px-12 fade-in-section">
-            <h2 class="text-4xl md:text-5xl font-bold text-center section-title mx-auto pb-4">Work & Education</h2>
-            <div class="mt-12 space-y-12 max-w-4xl mx-auto">
-                <!-- Experience Item -->
-                <div class="relative pl-8 sm:pl-32 group">
-                    <div class="absolute left-0 sm:left-16 top-0 bottom-0 w-1 bg-teal-500 rounded-full hidden sm:block"></div>
-                    <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center">
-                        <div class="bg-teal-500 text-slate-900 rounded-full w-24 sm:w-32 py-2 text-center text-sm font-semibold flex-shrink-0 mb-4 sm:mb-0 transition-transform duration-300 group-hover:scale-110">
-                            ~3 Years
-                        </div>
-                        <div class="sm:ml-8 bg-slate-800 p-6 rounded-2xl shadow-lg w-full transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-2xl">
-                            <h3 class="text-2xl font-bold text-white">Customer Associate</h3>
-                            <p class="text-slate-400">SquadStack | Remote</p>
-                            <ul class="mt-2 text-slate-300 list-disc list-inside space-y-1">
-                                <li>Interacted with leads and customers to deliver product insights and support.</li>
-                                <li>Maintained high communication standards to ensure customer satisfaction.</li>
-                                <li>Focused on data accuracy and performance metrics to meet team goals.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Trainee Item -->
-                <div class="relative pl-8 sm:pl-32 group">
-                    <div class="absolute left-0 sm:left-16 top-0 bottom-0 w-1 bg-teal-500 rounded-full hidden sm:block"></div>
-                    <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center">
-                        <div class="bg-teal-500 text-slate-900 rounded-full w-24 sm:w-32 py-2 text-center text-sm font-semibold flex-shrink-0 mb-4 sm:mb-0 transition-transform duration-300 group-hover:scale-110">
-                            Trainee
-                        </div>
-                        <div class="sm:ml-8 bg-slate-800 p-6 rounded-2xl shadow-lg w-full transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-2xl">
-                            <h3 class="text-2xl font-bold text-white">Trainee, Deshpande Skilling</h3>
-                            <p class="text-slate-400">Hubli, Karnataka</p>
-                            <ul class="mt-2 text-slate-300 list-disc list-inside space-y-1">
-                                <li>Developing skills in business communication, reasoning, aptitude, and technology.</li>
-                                <li>Participating in real-world projects and industry-oriented training.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Education Item -->
-                <div class="relative pl-8 sm:pl-32 group">
-                    <div class="absolute left-0 sm:left-16 top-0 bottom-0 w-1 bg-teal-500 rounded-full hidden sm:block"></div>
-                    <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center">
-                        <div class="bg-teal-500 text-slate-900 rounded-full w-24 sm:w-32 py-2 text-center text-sm font-semibold flex-shrink-0 mb-4 sm:mb-0 transition-transform duration-300 group-hover:scale-110">
-                            Education
-                        </div>
-                        <div class="sm:ml-8 bg-slate-800 p-6 rounded-2xl shadow-lg w-full transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-2xl">
-                            <h3 class="text-2xl font-bold text-white">Bachelor of Arts (B.A.) in Economics</h3>
-                            <p class="text-slate-400">Rani Channamma University, Belagavi | Completed</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <span class="eyebrow reveal">Let's Talk</span>
+  <h2 class="reveal">Ready to Grow Your Business?</h2>
+  <p class="reveal">Let's build a professional website that helps you get more customers.</p>
+  <a href="https://wa.me/917795290707?text=Hi%2C%20I%20need%20a%20website.%20Can%20you%20help%3F" target="_blank" rel="noopener" class="whatsapp-final-btn reveal">💬 Start on WhatsApp</a>
+</section>
 
-        <!-- Certifications Section -->
-        <section id="certifications" class="container mx-auto px-6 md:px-12 py-16 fade-in-section">
-            <h2 class="text-4xl md:text-5xl font-bold text-center section-title mx-auto pb-4">Certifications</h2>
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Certification Card 1 -->
-                <a href="https://www.coursera.org/account/accomplishments/verify/Z6NKQVJTXXAX?utm_source%3Dandroid%26utm_medium%3Dcertificate%26utm_content%3Dcert_image%26utm_campaign%3Dsharing_cta%26utm_product%3Dcourse" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                    <div class="flex flex-col h-full">
-                        <h3 class="text-xl font-semibold text-white">Introduction to Digital Marketing</h3>
-                        <p class="text-slate-400 mt-2">Issued by: <span class="font-medium text-teal-400">Meta</span></p>
-                        <p class="text-slate-300 mt-4 flex-grow">Covers the fundamentals of digital marketing, social media marketing, and online advertising strategies.</p>
-                        <p class="mt-4 text-teal-400 font-medium">
-                            View Certificate →
-                        </p>
-                    </div>
-                </a>
-                <!-- Certification Card 2 -->
-                <a href="https://www.edubridgeindia.com/certificate-detail?enrollment_number=EBEON0225986007" target="_blank" class="block p-8 bg-slate-800 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                    <div class="flex flex-col h-full">
-                        <h3 class="text-xl font-semibold text-white">Data Entry Operator</h3>
-                        <p class="text-slate-400 mt-2">Issued by: <span class="font-medium text-teal-400">EduBridge</span></p>
-                        <p class="text-slate-300 mt-4 flex-grow">Proficiency in data entry techniques, accuracy, speed, and use of relevant software tools.</p>
-                        <p class="mt-4 text-teal-400 font-medium">
-                            View Certificate →
-                        </p>
-                    </div>
-                </a>
-            </div>
-        </section>
+<footer>
+  <div class="name">Tippanna Bangi</div>
+  <div class="role">Freelance Web Designer &amp; Developer</div>
+  <a href="https://wa.me/917795290707?text=Hi%2C%20I%20need%20a%20website.%20Can%20you%20help%3F" target="_blank" rel="noopener" class="wa">💬 WhatsApp: +91 77952 90707</a>
+  <div class="copy">© 2026 Tippanna Bangi. All rights reserved.</div>
+</footer>
 
-        <!-- Contact Section -->
-        <section id="contact" class="container mx-auto px-6 md:px-12 py-16 bg-slate-800 rounded-3xl shadow-xl fade-in-section">
-            <h2 class="text-4xl md:text-5xl font-bold text-center section-title mx-auto pb-4">Get In Touch</h2>
-            <div class="mt-12 max-w-3xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
-                <div>
-                    <h3 class="text-2xl font-semibold text-white">Contact Details</h3>
-                    <ul class="mt-6 space-y-4 text-lg">
-                        <li class="flex items-start space-x-4">
-                            <svg class="w-8 h-8 text-teal-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.009-8-6.009V6h16zM4 18V9.754l7.633 5.725c.19.143.431.218.672.218s.482-.075.672-.218L20 9.754V18H4z"/></svg>
-                            <span>Tippannahbangi@gmail.com</span>
-                        </li>
-                        <li class="flex items-start space-x-4">
-                            <svg class="w-8 h-8 text-teal-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                            <span>+91 7795610812</span>
-                        </li>
-                    </ul>
-                    <!-- LinkedIn Badge -->
-                    <div class="mt-8 flex justify-start">
-                        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="tippanna-bangi-2b1a77328" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/tippanna-bangi-2b1a77328?trk=profile-badge">Tippanna Bangi</a></div>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold text-white mb-6">Send a Message</h3>
-                    <!-- Tally form embed code - iframe height updated for better spacing -->
-                    <iframe data-tally-src="https://tally.so/embed/w26oMb?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="300" frameborder="0" marginheight="0" marginwidth="0" title="GET IN TOUCH"></iframe>
-                    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-                </div>
-            </div>
-        </section>
-    </main>
+<!-- FIXED FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/917795290707?text=Hi%2C%20I%20need%20a%20website.%20Can%20you%20help%3F" target="_blank" rel="noopener" class="fab-whatsapp" aria-label="Chat on WhatsApp">
+  <span class="fab-label">Chat with me</span>
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.29-1.39a9.9 9.9 0 0 0 4.7 1.2h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67c2.2 0 4.27.86 5.82 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.14.82.84-3.06-.2-.32a8.15 8.15 0 0 1-1.26-4.37c0-4.54 3.7-8.22 8.26-8.22M8.53 6.94c-.16 0-.43.06-.65.31s-.86.84-.86 2.05.88 2.38 1 2.55c.13.16 1.7 2.6 4.14 3.63.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16s.2-1.06.14-1.16-.22-.16-.47-.28-1.44-.71-1.66-.79-.38-.12-.55.12-.63.79-.78.95-.29.19-.54.06a6.8 6.8 0 0 1-2-1.24 7.5 7.5 0 0 1-1.39-1.73c-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44s.16-.25.24-.42.04-.31-.02-.44-.55-1.34-.76-1.83c-.2-.48-.4-.4-.55-.41z"/></svg>
+</a>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 p-8 text-center border-t border-slate-800">
-        <p>© 2025 Tippanna Bangi. All rights reserved.</p>
-        <p class="mt-2">Developed with ❤️ & Tippanna </p>
-    </footer>
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('preloader').classList.add('hide'), 350);
+  });
 
-    <!-- LinkedIn Badge Script -->
-    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach((el, i) => {
+    el.style.transitionDelay = (i % 6) * 0.06 + 's';
+    io.observe(el);
+  });
+</script>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href.length > 1) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(href);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Add a class to the header on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('main-header');
-            if (window.scrollY > 50) {
-                header.classList.add('bg-opacity-100');
-                header.classList.remove('bg-opacity-80');
-            } else {
-                header.classList.add('bg-opacity-80');
-                header.classList.remove('bg-opacity-100');
-            }
-        });
-
-        // Fade-in sections on scroll using Intersection Observer
-        const fadeInSections = document.querySelectorAll('.fade-in-section');
-        const options = {
-            threshold: 0.2
-        };
-
-        const observer = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, options);
-
-        fadeInSections.forEach(section => {
-            observer.observe(section);
-        });
-    </script>
 </body>
 </html>
